@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">FinalProject</string>
+    <string name="app_name">Captura Pedido</string>
+
+    <!-- splash activity -->
+    <string name="tituloSplash">Captura \n Pedido</string>
+
+
+    <!-- Login activity -->
+    <string name="tituloLogin">Identificación</string>
+    <string name="hintUsuarioLogin">Usuario</string>
+    <string name="hintPasswordLogin">Password</string>
+    <string name="botonIngresarLogin">Ingresar</string>
+
 </resources>
