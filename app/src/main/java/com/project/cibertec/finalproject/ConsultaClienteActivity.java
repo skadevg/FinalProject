@@ -9,5 +9,8 @@ public class ConsultaClienteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.consultacliente_activity);
+//        /Prueba
+//        Prueba
+//        Prueba2
     }
 }

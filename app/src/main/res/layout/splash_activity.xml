@@ -9,8 +9,22 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".SplashActivity">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/SplashImageView"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/splash_image"
+        android:layout_marginTop="60dp"
+        />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="@string/tituloSplash"
+        android:textStyle="bold"
+        android:layout_centerInParent="true"
+        android:textSize="@dimen/tituloSplashActivity_size"/>
+
+
 </RelativeLayout>
