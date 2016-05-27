@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/my_nose"  android:checkableBehavior="single">
+        <item
+            android:id="@+id/navMenuFirst"
+            android:checked="true"
+            android:icon="@drawable/ic_add_white_24dp"
+            android:title="Primera" />
+
+        <item
+            android:id="@+id/navMenuSecond"
+            android:icon="@drawable/ic_delete_white_24dp"
+            android:title="Segunda" />
+
+        <item
+            android:id="@+id/navMenuMain"
+            android:icon="@drawable/ic_save_white_24dp"
+            android:title="Principal" />
+    </group>
+
+    <group android:id="@+id/my_move" android:checkableBehavior="single">
+        <item
+            android:orderInCategory="0"
+            android:id="@+id/game1"
+            android:icon="@drawable/ic_add_white_24dp"
+            android:title="Game #1" />
+        <item
+            android:orderInCategory="0"
+            android:id="@+id/game2"
+            android:icon="@drawable/ic_add_white_24dp"
+            android:title="Game #2" />
+    </group>
+
+</menu>

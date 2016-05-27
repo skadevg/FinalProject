@@ -5,13 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--<android.support.v7.widget.Toolbar-->
-        <!--android:id="@+id/toolbar"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="?attr/actionBarSize"-->
-        <!--android:background="?attr/colorPrimary"-->
-        <!--android:minHeight="?attr/actionBarSize" />-->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,9 +17,4 @@
         android:layout_marginRight="56dp"
         android:layout_gravity="start"
         app:menu="@menu/left_menu" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvFirst"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 </android.support.v4.widget.DrawerLayout>
