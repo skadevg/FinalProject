@@ -8,18 +8,25 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
-            <intent-filter>
+        <!--<activity android:name=".SplashActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">-->
+        <activity android:name=".SplashActivity" android:theme="@style/AppTheme.NoActionBar">
+           <!--  <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            -->
         </activity>
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".ConsultaClienteActivity"></activity>
         <activity android:name=".ListaClientesActivity"></activity>
         <activity android:name=".MantenimientoClienteActivity"></activity>
-        <activity android:name=".MenuPrincipalActivity"></activity>
+        <activity android:name=".MenuPrincipalActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity android:name=".NuevoClienteActivity"></activity>
     </application>
 

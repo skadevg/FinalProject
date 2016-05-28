@@ -3,23 +3,27 @@
 
     <group android:id="@+id/my_nose"  android:checkableBehavior="single">
         <item
-            android:id="@+id/navMenuFirst"
+            android:id="@+id/navMenuClientes"
             android:checked="true"
-            android:icon="@drawable/ic_add_white_24dp"
+            android:icon="@drawable/clientes_icon"
             android:title="Primera" />
 
         <item
-            android:id="@+id/navMenuSecond"
-            android:icon="@drawable/ic_delete_white_24dp"
+            android:id="@+id/navMenuProductos"
+            android:icon="@drawable/productos_icon"
             android:title="Segunda" />
 
         <item
-            android:id="@+id/navMenuMain"
-            android:icon="@drawable/ic_save_white_24dp"
+            android:id="@+id/navMenuPedidos"
+            android:icon="@drawable/pedidos_icon"
+            android:title="Principal" />
+        <item
+            android:id="@+id/navMenuCerrarSesion"
+            android:icon="@drawable/cerrar_sesion_icon"
             android:title="Principal" />
     </group>
 
-    <group android:id="@+id/my_move" android:checkableBehavior="single">
+    <!--<group android:id="@+id/my_move" android:checkableBehavior="single">
         <item
             android:orderInCategory="0"
             android:id="@+id/game1"
@@ -30,6 +34,6 @@
             android:id="@+id/game2"
             android:icon="@drawable/ic_add_white_24dp"
             android:title="Game #2" />
-    </group>
+    </group>-->
 
 </menu>
