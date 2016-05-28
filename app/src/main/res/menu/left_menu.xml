@@ -6,21 +6,21 @@
             android:id="@+id/navMenuClientes"
             android:checked="true"
             android:icon="@drawable/clientes_icon"
-            android:title="Primera" />
+            android:title="Clientes" />
 
         <item
             android:id="@+id/navMenuProductos"
             android:icon="@drawable/productos_icon"
-            android:title="Segunda" />
+            android:title="Productos" />
 
         <item
             android:id="@+id/navMenuPedidos"
             android:icon="@drawable/pedidos_icon"
-            android:title="Principal" />
+            android:title="Pedidos" />
         <item
             android:id="@+id/navMenuCerrarSesion"
             android:icon="@drawable/cerrar_sesion_icon"
-            android:title="Principal" />
+            android:title="Cerrar Sesión" />
     </group>
 
     <!--<group android:id="@+id/my_move" android:checkableBehavior="single">
