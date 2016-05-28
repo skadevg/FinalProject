@@ -17,9 +17,9 @@ import java.io.OutputStream;
 public class DataBaseHelper extends SQLiteOpenHelper {
 
     //The Android's default system path of your application database.
-    private static String DB_PATH = "/data/data/pe.cibertec.demo01/databases/";
+    private static String DB_PATH = "/data/data/com.project.cibertec.finalproject/databases/";
 
-    private static String DB_NAME = "Clase05.sqlite";
+    private static String DB_NAME = "FinalProject.sqlite";
 
     private SQLiteDatabase myDataBase;
 
