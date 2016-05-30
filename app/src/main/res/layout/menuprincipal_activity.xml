@@ -19,6 +19,6 @@
         android:layout_height="match_parent"
         android:layout_marginRight="56dp"
         android:layout_gravity="start"
-        app:menu="@menu/left_menu" />
+        app:menu="@menu/menu_drawer" />
 
 </android.support.v4.widget.DrawerLayout>
