@@ -19,7 +19,10 @@
         <activity android:name=".ClientesConsultaActivity"></activity>
         <activity android:name=".ClientesListaActivity"></activity>
         <activity android:name=".ClientesMantenimientoActivity"></activity>
-        <activity android:name=".ClientesNuevoActivity"></activity>
+        <activity android:name=".ClientesNuevoActivity"
+            android:label="Nuevo Cliente"></activity>
+        <activity android:name=".ProductosListaActivity"></activity>
+        <activity android:name=".PedidosListaActivity"></activity>
     </application>
 
 </manifest>
