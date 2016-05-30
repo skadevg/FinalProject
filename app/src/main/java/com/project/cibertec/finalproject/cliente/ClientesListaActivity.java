@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.project.cibertec.finalproject.R;
 import com.project.cibertec.finalproject.cliente.adapter.recyclerview.RVAdapterListaCliente;
 import com.project.cibertec.finalproject.entities.Cliente;
+import com.project.cibertec.finalproject.producto.ProductosListaActivity;
 
 public class ClientesListaActivity extends AppCompatActivity {
 
@@ -101,6 +102,8 @@ public class ClientesListaActivity extends AppCompatActivity {
                     dlMenu.closeDrawer(GravityCompat.START);
                     return true;
                 case R.id.nvItemProductos:
+                    Intent listaProd = new Intent(ClientesListaActivity.this, ProductosListaActivity.class);
+                    startActivity(listaProd);
                     return true;
                 case R.id.nvItemPedidos:
                     return true;
