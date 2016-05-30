@@ -3,14 +3,11 @@ package com.project.cibertec.finalproject;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-public class ConsultaClienteActivity extends AppCompatActivity {
+public class ClientesNuevoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.consultacliente_activity);
-//        /Prueba
-//        Prueba
-//        Prueba2
+        setContentView(R.layout.clientesnuevo_activity);
     }
 }

@@ -44,7 +44,7 @@ public class RVClienteAdapter extends RecyclerView.Adapter<RVClienteAdapter.RVCl
     }
     @Override
     public RVClienteAdapter.RVClienteAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new RVClienteAdapterViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.cliente_item, parent, false));
+        return new RVClienteAdapterViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.clienteslista_item, parent, false));
     }
 
     @Override

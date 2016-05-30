@@ -16,11 +16,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".ConsultaClienteActivity"></activity>
-        <activity android:name=".ListaClientesActivity"></activity>
-        <activity android:name=".MantenimientoClienteActivity"></activity>
+        <activity android:name=".ClientesConsultaActivity"></activity>
+        <activity android:name=".ClientesListaActivity"></activity>
+        <activity android:name=".ClientesMantenimientoActivity"></activity>
         <activity android:name=".MenuPrincipalActivity"></activity>
-        <activity android:name=".NuevoClienteActivity"></activity>
+        <activity android:name=".ClientesNuevoActivity"></activity>
     </application>
 
 </manifest>

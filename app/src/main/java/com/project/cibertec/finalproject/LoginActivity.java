@@ -107,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void Ingresar() {
-        Intent intent = new Intent(LoginActivity.this, ListaClientesActivity.class);
+        Intent intent = new Intent(LoginActivity.this, ClientesListaActivity.class);
         startActivity(intent);
         finish();
     }
