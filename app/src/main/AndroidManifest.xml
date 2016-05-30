@@ -19,7 +19,6 @@
         <activity android:name=".ClientesConsultaActivity"></activity>
         <activity android:name=".ClientesListaActivity"></activity>
         <activity android:name=".ClientesMantenimientoActivity"></activity>
-        <activity android:name=".MenuPrincipalActivity"></activity>
         <activity android:name=".ClientesNuevoActivity"></activity>
     </application>
 
