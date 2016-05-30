@@ -19,6 +19,9 @@ public class Cliente implements Parcelable {
     private String latitud;
     private String longitud;
 
+    public Cliente() {
+    }
+
     public int getClienteId() {
         return clienteId;
     }
