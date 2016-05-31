@@ -1,5 +1,7 @@
 package com.project.cibertec.finalproject.cliente;
 
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,9 +22,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.project.cibertec.finalproject.LoginActivity;
 import com.project.cibertec.finalproject.R;
 import com.project.cibertec.finalproject.cliente.adapter.recyclerview.RVAdapterListaCliente;
 import com.project.cibertec.finalproject.entities.Cliente;
+import com.project.cibertec.finalproject.pedido.PedidosListaActivity;
 import com.project.cibertec.finalproject.producto.ProductosListaActivity;
 
 public class ClientesListaActivity extends AppCompatActivity {
@@ -104,10 +109,17 @@ public class ClientesListaActivity extends AppCompatActivity {
                 case R.id.nvItemProductos:
                     Intent listaProd = new Intent(ClientesListaActivity.this, ProductosListaActivity.class);
                     startActivity(listaProd);
+                    dlMenu.closeDrawer(GravityCompat.START);
                     return true;
                 case R.id.nvItemPedidos:
+                    Intent listaPedidos = new Intent(ClientesListaActivity.this, PedidosListaActivity.class);
+                    startActivity(listaPedidos);
+                    dlMenu.closeDrawer(GravityCompat.START);
                     return true;
                 case R.id.nvItemCerrarSesion:
+                    nvMenu.setCheckedItem(R.id.nvItemclientes);
+                    dlMenu.closeDrawer(GravityCompat.START);
+                    closeSession();
                     return true;
                 default:
                     return true;
@@ -145,6 +157,36 @@ public class ClientesListaActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    private void closeSession(){
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(ClientesListaActivity.this);
+        alert.setTitle("Confirmación");
+        alert.setMessage("¿Desea cerrar la sesión?");
+        alert.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @SuppressLint("DefaultLocale")
+            public void onClick(DialogInterface dialog, int whichButton) {
+
+                PreferenceManager.getDefaultSharedPreferences(ClientesListaActivity.this)
+                        .edit()
+                        .clear()
+                        .commit();
+                Intent login = new Intent(ClientesListaActivity.this, LoginActivity.class);
+                startActivity(login);
+                finish();
+
+            }
+        });
+
+        alert.setNegativeButton("No",new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {}
+        });
+        alert.show();
+
+
+
     }
 
 }

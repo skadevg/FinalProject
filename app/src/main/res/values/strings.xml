@@ -20,4 +20,7 @@
     <!-- API DE GOOGLE MAPS-->
     <string name="google_api_key">AIzaSyC2pJOJvVqfVyr4osqbJ8VswrFwJMuDalE</string>
 
+    <!-- TOOLBAR MENU TITULOS-->
+    <string name="action_search">Buscar</string>
+
 </resources>

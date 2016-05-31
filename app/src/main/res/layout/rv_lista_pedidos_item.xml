@@ -24,18 +24,11 @@
                 android:layout_marginBottom="4dp">
 
                 <TextView
-                    android:id="@+id/tvProductoListItemNombre"
+                    android:id="@+id/tvPedidoListItemNombreCli"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/tvProductoListItemNombreDes"
-                    android:text="Nombre"
-                    android:textColor="#9e9e9e"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="11sp" />
 
             </LinearLayout>
 
@@ -46,41 +39,17 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tvProductoListItemDesc"
+                    android:id="@+id/tvPedidoListItemCantProductos"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/tvProductoListItemPrecio"
+                    android:id="@+id/tvPedidoListItemTotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tvProductoListItemDescDes"
-                    android:text="Descripción"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="#9e9e9e"
-                    android:textSize="11sp" />
-
-                <TextView
-                    android:id="@+id/tvProductoListItemPrecioDes"
-                    android:text="Precio unitario"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#9e9e9e"
-                    android:textSize="11sp" />
 
             </LinearLayout>
 
