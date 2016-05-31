@@ -47,7 +47,7 @@ public class ProductosListaActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarProdList);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle("Productos");
+        setTitle(R.string.tituloProductoLista);
 
         //Inflo el recycler y configuramos el Adapter
         mRvProductosListado = (RecyclerView) findViewById(R.id.rvProductosListado);

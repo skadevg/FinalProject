@@ -29,8 +29,8 @@ public class ClientesNuevoActivity extends AppCompatActivity implements OnMapRea
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle(R.string.tituloClienteNuevo);
 
     /*    tilSecondName = (TextInputLayout) findViewById(R.id.tilSecondNombre);
         tilSecondLast = (TextInputLayout) findViewById(R.id.tilSecondApellido);

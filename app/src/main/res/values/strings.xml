@@ -2,7 +2,7 @@
     <string name="app_name">Captura Pedido</string>
 
     <!-- splash activity -->
-    <string name="tituloSplash">Captura \n Pedido</string>
+    <string name="tituloSplash">Captura Pedido</string>
 
 
     <!-- Login activity -->
@@ -22,5 +22,22 @@
 
     <!-- TOOLBAR MENU TITULOS-->
     <string name="action_search">Buscar</string>
+
+    <!-- Títulos de pantallas -->
+    <string name="tituloClienteNuevo">Cliente nuevo</string>
+    <string name="tituloProductoNuevo">Producto nuevo</string>
+    <string name="tituloProductoLista">Productos</string>
+
+    <string name="titleContacto">Contacto</string>
+    <string name="hintNombre">Nombre</string>
+    <string name="hintApellido">Apellido</string>
+    <string name="hintTelefono">Teléfono</string>
+    <string name="hintCorreo">Correo</string>
+    <string name="hintEmpresa">Empresa</string>
+    <string name="hintDireccion">Dirección</string>
+    <string name="hintDistrito">Distrito</string>
+    <string name="hintReferencia">Referencia</string>
+    <string name="hintDescripcion">Descripción</string>
+    <string name="hintPrecioUnitario">Precio unitario</string>
 
 </resources>

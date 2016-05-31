@@ -3,22 +3,18 @@ package com.project.cibertec.finalproject.pedido;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.project.cibertec.finalproject.R;
 import com.project.cibertec.finalproject.entities.Pedido;
-import com.project.cibertec.finalproject.entities.Producto;
 import com.project.cibertec.finalproject.pedido.adapter.recyclerview.RVAdapterListaPedido;
-import com.project.cibertec.finalproject.producto.adapter.recyclerview.RVAdapterListaProducto;
 
 import java.util.ArrayList;
 

@@ -22,7 +22,7 @@ public class ProductosNuevoActivity extends AppCompatActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarProdNuevo);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle("Producto nuevo");
+        setTitle(R.string.tituloProductoNuevo);
     }
 
     @Override
