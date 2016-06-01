@@ -9,6 +9,8 @@
         android:value="@integer/google_play_services_version"/>
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -24,8 +26,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity"></activity>
+
         <activity android:name=".cliente.ClientesListaActivity"></activity>
         <activity android:name=".cliente.ClientesNuevoActivity"></activity>
+        <activity android:name=".cliente.ClientesDetalleActivity"></activity>
+        <activity android:name=".cliente.ClientesMapActivity"></activity>
 
         <activity android:name=".producto.ProductosListaActivity"></activity>
         <activity android:name=".producto.ProductosNuevoActivity"></activity>

@@ -27,8 +27,10 @@
     <string name="tituloClienteNuevo">Cliente nuevo</string>
     <string name="tituloProductoNuevo">Producto nuevo</string>
     <string name="tituloProductoLista">Productos</string>
-
+    <string name="tituloPedidoLista">Pedidos</string>
     <string name="titleContacto">Contacto</string>
+
+    <!-- HINTS -->
     <string name="hintNombre">Nombre</string>
     <string name="hintApellido">Apellido</string>
     <string name="hintTelefono">Teléfono</string>
@@ -39,5 +41,8 @@
     <string name="hintReferencia">Referencia</string>
     <string name="hintDescripcion">Descripción</string>
     <string name="hintPrecioUnitario">Precio unitario</string>
+
+    <!-- Botones -->
+    <string name="btnNuevoPedido">Nuevo pedido</string>
 
 </resources>

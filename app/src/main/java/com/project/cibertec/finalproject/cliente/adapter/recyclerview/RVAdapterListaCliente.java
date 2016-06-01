@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.project.cibertec.finalproject.R;
+import com.project.cibertec.finalproject.cliente.adapter.recyclerview.listeners.IRVAdapterListaClienteListener;
 import com.project.cibertec.finalproject.entities.Cliente;
 
 import java.util.ArrayList;
@@ -18,9 +19,11 @@ import java.util.ArrayList;
 public class RVAdapterListaCliente extends RecyclerView.Adapter<RVAdapterListaCliente.RVAdapterListaClienteViewHolder> {
 
     private ArrayList<Cliente> mLstCliente;
+    private IRVAdapterListaClienteListener mIRVAdapterListaClienteListener;
 
-    public RVAdapterListaCliente() {
+    public RVAdapterListaCliente(IRVAdapterListaClienteListener mIRVAdapterListaClienteListener) {
         mLstCliente = new ArrayList<>();
+        this.mIRVAdapterListaClienteListener = mIRVAdapterListaClienteListener;
     }
 
     public void add(Cliente cliente) {
@@ -40,6 +43,11 @@ public class RVAdapterListaCliente extends RecyclerView.Adapter<RVAdapterListaCl
         holder.tvListCliItemTelefono.setText(cliente.getTelefono());
         holder.tvListCliItemDireccion.setText(cliente.getDireccion());
         holder.ivListCliItemPuntero.setImageResource(R.drawable.google_map_marker_icon);
+
+        //Listeners
+        holder.itemView.setOnClickListener(itemViewOnClickListener);
+        holder.itemView.setTag(position);
+
     }
 
     @Override
@@ -61,5 +69,13 @@ public class RVAdapterListaCliente extends RecyclerView.Adapter<RVAdapterListaCl
             ivListCliItemPuntero = (ImageView) itemView.findViewById(R.id.ivListCliItemPuntero);
         }
     }
+
+    View.OnClickListener itemViewOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            mIRVAdapterListaClienteListener.onItemClick(mLstCliente.get((Integer) v.getTag()));
+        }
+    };
+
 
 }

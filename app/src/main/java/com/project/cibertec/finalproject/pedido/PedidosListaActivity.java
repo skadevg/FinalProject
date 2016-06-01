@@ -36,7 +36,7 @@ public class PedidosListaActivity extends AppCompatActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarPedidosList);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle("Pedidos");
+        setTitle(R.string.tituloPedidoLista);
 
         //Inflo el recycler y configuramos el Adapter
         mRVPedidosListado = (RecyclerView) findViewById(R.id.rvPedidosLista);
