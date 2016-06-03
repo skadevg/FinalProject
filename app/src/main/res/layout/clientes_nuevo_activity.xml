@@ -37,8 +37,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Contacto"
-                    android:textSize="20dp"
+                    android:text="@string/titleContacto"
+                    android:textSize="@dimen/size_title_contacto_nuevo_cliente"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -48,7 +48,6 @@
                     android:orientation="vertical">
 
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/tilCliNuevoNombre"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="1dp"
@@ -58,12 +57,14 @@
                             android:id="@+id/edtCliNuevoNombre"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Nombre"
-                            android:textSize="14dp" />
+                            android:hint="@string/hintNombre"
+                            android:textSize="@dimen/size_edittext_nuevo_cliente"
+                            android:inputType="textCapWords"
+                            android:maxLines="1"
+                            android:maxLength="50"/>
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/tilSecondApellido"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="1dp"
@@ -73,12 +74,14 @@
                             android:id="@+id/edtCliNuevoApellido"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Apellido"
-                            android:textSize="14dp" />
+                            android:hint="@string/hintApellido"
+                            android:textSize="@dimen/size_edittext_nuevo_cliente"
+                            android:inputType="textCapWords"
+                            android:maxLines="1"
+                            android:maxLength="80"/>
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/tilSecondEdad"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="1dp"
@@ -88,8 +91,11 @@
                             android:id="@+id/edtCliNuevoTlf"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Telefono"
-                            android:textSize="14dp" />
+                            android:hint="@string/hintTelefono"
+                            android:textSize="@dimen/size_edittext_nuevo_cliente"
+                            android:inputType="phone"
+                            android:maxLines="1"
+                            android:maxLength="9"/>
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -103,8 +109,11 @@
                             android:id="@+id/edtCliNuevoCorreo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Correo"
-                            android:textSize="14dp" />
+                            android:hint="@string/hintCorreo"
+                            android:textSize="@dimen/size_edittext_nuevo_cliente"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:maxLength="40"/>
                     </android.support.design.widget.TextInputLayout>
 
                 </LinearLayout>
@@ -116,6 +125,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                card_view:cardElevation="3dp"
                 card_view:cardCornerRadius="4dp"
                 card_view:contentPadding="20dp">
 
@@ -135,8 +145,11 @@
                             android:id="@+id/edtCliNuevoEmpresa"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Empresa"
-                            android:textSize="14dp" />
+                            android:hint="@string/hintEmpresa"
+                            android:textSize="@dimen/size_edittext_nuevo_cliente"
+                            android:inputType="textPersonName"
+                            android:maxLines="1"
+                            android:maxLength="50"/>
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -150,8 +163,11 @@
                             android:id="@+id/edtCliNuevoDireccion"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Dirección"
-                            android:textSize="14dp" />
+                            android:hint="@string/hintDireccion"
+                            android:textSize="@dimen/size_edittext_nuevo_cliente"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:maxLength="120"/>
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -165,8 +181,11 @@
                             android:id="@+id/edtCliNuevoDistrito"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Distrito"
-                            android:textSize="14dp" />
+                            android:hint="@string/hintDistrito"
+                            android:textSize="@dimen/size_edittext_nuevo_cliente"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:maxLength="120"/>
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -180,8 +199,11 @@
                             android:id="@+id/edtCliNuevoReferencia"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Referencia"
-                            android:textSize="14dp" />
+                            android:hint="@string/hintReferencia"
+                            android:inputType="text"
+                            android:textSize="@dimen/size_edittext_nuevo_cliente"
+                            android:maxLines="1"
+                            android:maxLength="120"/>
                     </android.support.design.widget.TextInputLayout>
 
                 </LinearLayout>

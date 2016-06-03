@@ -1,4 +1,4 @@
-package com.project.cibertec.finalproject.dao;
+package com.project.cibertec.finalproject.database;
 
 import android.content.Context;
 import android.database.SQLException;

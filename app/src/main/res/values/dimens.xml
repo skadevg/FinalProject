@@ -17,4 +17,8 @@
     <dimen name="header_height">192dp</dimen>
     <dimen name="perfil_image_size">64dp</dimen>
 
+    <!-- Clientes -->
+    <dimen name="size_title_contacto_nuevo_cliente">20sp</dimen>
+    <dimen name="size_edittext_nuevo_cliente">14sp</dimen>
+
 </resources>

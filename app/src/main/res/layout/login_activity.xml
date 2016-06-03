@@ -37,7 +37,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:hint="@string/hintUsuarioLogin" />
+                android:hint="@string/hintUsuarioLogin"
+                android:maxLines="1"
+                android:maxLength="120"/>
 
             <EditText
                 android:id="@+id/edtLoginPassword"
@@ -45,7 +47,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:hint="@string/hintPasswordLogin"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:maxLength="120"/>
 
             <Button
                 android:id="@+id/btnLoginIngresar"
