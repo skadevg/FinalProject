@@ -32,12 +32,6 @@ public class ClientesNuevoActivity extends AppCompatActivity implements OnMapRea
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(R.string.tituloClienteNuevo);
 
-    /*    tilSecondName = (TextInputLayout) findViewById(R.id.tilSecondNombre);
-        tilSecondLast = (TextInputLayout) findViewById(R.id.tilSecondApellido);
-        tilSecondDoc = (TextInputLayout) findViewById(R.id.tilSecondDni);
-        tilSecondAge = (TextInputLayout) findViewById(R.id.tilSecondEdad);*/
-//        tilSecondPhone = (TextInputLayout) findViewById(R.id.tilSecond);
-
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.fragMap);
         mapFragment.getMapAsync(ClientesNuevoActivity.this);
     }
