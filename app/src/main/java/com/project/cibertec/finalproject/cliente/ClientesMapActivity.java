@@ -128,7 +128,7 @@ public class ClientesMapActivity extends AppCompatActivity implements OnMapReady
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                onBackPressed();;
+                onBackPressed();
                 return  true;
             default:
                 return super.onOptionsItemSelected(item);

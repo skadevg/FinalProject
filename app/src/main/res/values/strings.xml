@@ -18,7 +18,7 @@
     <string name="CerrarSesion">Cerrar Sesión</string>
 
     <!-- API DE GOOGLE MAPS-->
-    <string name="google_api_key">AIzaSyC2pJOJvVqfVyr4osqbJ8VswrFwJMuDalE</string>
+    <string name="google_api_key"> AIzaSyBhjuFkWA9F56BL_04Fza7p999bF9h607U </string>
 
     <!-- TOOLBAR MENU TITULOS-->
     <string name="action_search">Buscar</string>

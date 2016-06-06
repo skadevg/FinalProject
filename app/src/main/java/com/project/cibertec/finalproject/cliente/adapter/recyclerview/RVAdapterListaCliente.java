@@ -19,6 +19,11 @@ import java.util.ArrayList;
 public class RVAdapterListaCliente extends RecyclerView.Adapter<RVAdapterListaCliente.RVAdapterListaClienteViewHolder> {
 
     private ArrayList<Cliente> mLstCliente;
+
+    public RVAdapterListaCliente() {
+        mLstCliente = new ArrayList<>();
+    }
+
     private IRVAdapterListaClienteListener mIRVAdapterListaClienteListener;
 
     public RVAdapterListaCliente(IRVAdapterListaClienteListener mIRVAdapterListaClienteListener) {
@@ -29,6 +34,12 @@ public class RVAdapterListaCliente extends RecyclerView.Adapter<RVAdapterListaCl
     public void add(Cliente cliente) {
         mLstCliente.add(cliente);
         notifyItemInserted(mLstCliente.size() - 1);
+    }
+
+    public void clearAndAddAll(ArrayList<Cliente> lstCliente) {
+        mLstCliente.clear();
+        mLstCliente.addAll(lstCliente);
+        notifyDataSetChanged();
     }
 
     @Override
