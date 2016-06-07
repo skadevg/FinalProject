@@ -15,6 +15,33 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
         android:elevation="@dimen/toolbarElevation"/>
 
+    <Spinner
+        android:id="@+id/spClientes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></Spinner>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ed000000"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp" />
+
+    <TextView
+        android:id="@+id/tvClienteNombrePedido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:visibility="gone"/>
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Productos del Carrito"
+        android:padding="3dp"
+        android:textStyle="bold"
+        android:gravity="center"/>
+
     <!-- RecyclerView que tiene los datos -->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvPedidosLista"

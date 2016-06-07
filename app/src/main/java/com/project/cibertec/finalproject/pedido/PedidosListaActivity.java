@@ -11,10 +11,17 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.project.cibertec.finalproject.R;
+import com.project.cibertec.finalproject.entities.Cliente;
 import com.project.cibertec.finalproject.entities.Pedido;
 import com.project.cibertec.finalproject.pedido.adapter.recyclerview.RVAdapterListaPedido;
+import com.project.cibertec.finalproject.pedido.adapter.recyclerview.SPAdapter;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -27,6 +34,11 @@ public class PedidosListaActivity extends AppCompatActivity{
     private NavigationView nvMenu;
     private RecyclerView mRVPedidosListado;
     private ArrayList<Pedido> mListaPedidos;
+    private Spinner spClientes;
+    private SPAdapter spFirstAdapter;
+    private TextView tvClienteNombrePedido;
+
+    private Cliente mCliente = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,6 +49,28 @@ public class PedidosListaActivity extends AppCompatActivity{
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(R.string.tituloPedidoLista);
+
+        //Spinner
+        spClientes =(Spinner) findViewById(R.id.spClientes);
+        spFirstAdapter = new SPAdapter(PedidosListaActivity.this);
+        spFirstAdapter.add(new Cliente(1,"Cesar", "Vargas","Vargas","Vargas","Vargas","Vargas","Vargas","Vargas","Vargas","Vargas" ));
+        spFirstAdapter.add(new Cliente(2,"Marina", "Vargas","Vargas","Vargas","Vargas","Vargas","Vargas","Vargas","Vargas","Vargas" ));
+        spClientes.setAdapter(spFirstAdapter);
+        spClientes.setVisibility(View.VISIBLE);
+
+        tvClienteNombrePedido = (TextView) findViewById(R.id.tvClienteNombrePedido);
+        tvClienteNombrePedido.setVisibility(View.GONE);
+
+        if (getIntent().getExtras()!= null) {
+            //.containsKey("cliente")
+            if(getIntent().getExtras().containsKey("cliente")){
+                mCliente = (Cliente) getIntent().getExtras().get("cliente");
+                tvClienteNombrePedido.setText(mCliente.getNombre()+" "+mCliente.getApellido());
+                spClientes.setVisibility(View.GONE);
+                tvClienteNombrePedido.setVisibility(View.VISIBLE);
+            }
+        }
+
 
         //Inflo el recycler y configuramos el Adapter
         mRVPedidosListado = (RecyclerView) findViewById(R.id.rvPedidosLista);

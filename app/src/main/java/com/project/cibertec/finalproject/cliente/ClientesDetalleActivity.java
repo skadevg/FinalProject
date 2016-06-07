@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.project.cibertec.finalproject.R;
 import com.project.cibertec.finalproject.entities.Cliente;
+import com.project.cibertec.finalproject.pedido.PedidosListaActivity;
 
 
 public class ClientesDetalleActivity extends AppCompatActivity {
@@ -54,6 +55,7 @@ public class ClientesDetalleActivity extends AppCompatActivity {
 
         btnCliDetNuevoPedido = (Button) findViewById(R.id.btnCliDetNuevoPedido);
 
+        btnCliDetNuevoPedido.setOnClickListener( onClickListenerbtnCliDetNuevoPedido);
         if (getIntent().getExtras().containsKey("cliente")) {
             mCliente = (Cliente) getIntent().getExtras().get("cliente");
             setTitle(mCliente.getEmpresa());
@@ -86,6 +88,16 @@ public class ClientesDetalleActivity extends AppCompatActivity {
             Intent mapa = new Intent(ClientesDetalleActivity.this, ClientesMapActivity.class);
             mapa.putExtra("cliente",mCliente);
             startActivity(mapa);
+        }
+    };
+    View.OnClickListener onClickListenerbtnCliDetNuevoPedido = new View.OnClickListener(){
+
+        @Override
+        public void onClick(View v) {
+            Intent nuevoPedido =  new Intent(ClientesDetalleActivity.this, PedidosListaActivity.class);
+            nuevoPedido.putExtra("hideSpinner", true);
+            nuevoPedido.putExtra("cliente", mCliente);
+            startActivity(nuevoPedido );
         }
     };
 
