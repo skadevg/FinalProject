@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.project.cibertec.finalproject.R;
 import com.project.cibertec.finalproject.entities.Cliente;
+import com.project.cibertec.finalproject.pedido.NuevoPedidoActivity;
 import com.project.cibertec.finalproject.pedido.PedidosListaActivity;
 
 
@@ -91,11 +92,10 @@ public class ClientesDetalleActivity extends AppCompatActivity {
         }
     };
     View.OnClickListener onClickListenerbtnCliDetNuevoPedido = new View.OnClickListener(){
-
         @Override
         public void onClick(View v) {
-            Intent nuevoPedido =  new Intent(ClientesDetalleActivity.this, PedidosListaActivity.class);
-            nuevoPedido.putExtra("hideSpinner", true);
+            Intent nuevoPedido =  new Intent(ClientesDetalleActivity.this, NuevoPedidoActivity.class);
+            //nuevoPedido.putExtra("hideSpinner", true);
             nuevoPedido.putExtra("cliente", mCliente);
             startActivity(nuevoPedido );
         }

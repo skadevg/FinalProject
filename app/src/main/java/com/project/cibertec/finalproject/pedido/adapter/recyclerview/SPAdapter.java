@@ -30,7 +30,7 @@ public class SPAdapter extends ArrayAdapter <Cliente>{
 
         TextView textView = (TextView) view.findViewById(R.id.spClienteItem);
         Cliente cliente = getItem(position);
-        textView.setText(cliente.getNombre()+" "+cliente.getApellido());
+        textView.setText(cliente.getEmpresa().toUpperCase());
         return view;
     }
 
@@ -39,7 +39,7 @@ public class SPAdapter extends ArrayAdapter <Cliente>{
         View view = LayoutInflater.from(getContext()).inflate(R.layout.sp_lista_clientes_item, parent, false);
         TextView textView = (TextView) view.findViewById(R.id.spClienteItem);
         Cliente cliente = getItem(position);
-        textView.setText(cliente.getNombre()+" "+cliente.getApellido());
+        textView.setText(cliente.getEmpresa().toUpperCase());
 
         return view;
     }

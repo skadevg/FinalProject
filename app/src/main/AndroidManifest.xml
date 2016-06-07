@@ -36,6 +36,9 @@
         <activity android:name=".producto.ProductosNuevoActivity"></activity>
 
         <activity android:name=".pedido.PedidosListaActivity"></activity>
+        <activity android:name=".pedido.NuevoPedidoActivity"></activity>
+        <activity android:name=".pedido.SeleccioneProductoActivity"></activity>
+        <activity android:name=".pedido.DetallePedidoActivity"></activity>
 
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_api_key"></meta-data>
