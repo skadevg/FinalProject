@@ -2,6 +2,8 @@ package com.project.cibertec.finalproject.entities;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.os.StrictMode;
+import android.util.StringBuilderPrinter;
 
 /**
  * Created by thebe on 27/05/2016.
@@ -20,6 +22,21 @@ public class Cliente implements Parcelable {
     private String longitud;
 
     public Cliente() {
+    }
+
+    public Cliente(int clienteId , String nombre , String apellido, String telefono, String correo, String empresa,
+                   String direccion, String distrito, String referencia, String latitud, String longitud){
+
+        this.clienteId = clienteId;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.telefono = telefono;
+        this.empresa = empresa;
+        this.direccion = direccion;
+        this.distrito = distrito;
+        this.referencia = referencia;
+        this.latitud = latitud;
+        this.longitud = longitud;
     }
 
     public int getClienteId() {

@@ -17,7 +17,7 @@
 
     <!-- RecyclerView que tiene los datos -->
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvPedidosLista"
+        android:id="@+id/rvPedidosDetalle"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

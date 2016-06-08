@@ -1,5 +1,6 @@
 package com.project.cibertec.finalproject.pedido;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -11,10 +12,14 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.project.cibertec.finalproject.R;
+import com.project.cibertec.finalproject.entities.Cliente;
 import com.project.cibertec.finalproject.entities.Pedido;
 import com.project.cibertec.finalproject.pedido.adapter.recyclerview.RVAdapterListaPedido;
+import com.project.cibertec.finalproject.pedido.adapter.recyclerview.SPAdapter;
 
 import java.util.ArrayList;
 
@@ -27,11 +32,16 @@ public class PedidosListaActivity extends AppCompatActivity{
     private NavigationView nvMenu;
     private RecyclerView mRVPedidosListado;
     private ArrayList<Pedido> mListaPedidos;
+    private Spinner spClientes;
+    private SPAdapter spFirstAdapter;
+    private TextView tvClienteNombrePedido;
+
+    private Cliente mCliente = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pedidos_lista_activity);
+        setContentView(R.layout.pedidos_seleccione_producto);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarPedidosList);
         setSupportActionBar(toolbar);
@@ -82,6 +92,7 @@ public class PedidosListaActivity extends AppCompatActivity{
                 onBackPressed();
                 return true;
             case R.id.abFirstAdd:
+                startActivity(new Intent(PedidosListaActivity.this,NuevoPedidoActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
