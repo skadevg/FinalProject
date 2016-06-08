@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -16,11 +18,16 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.project.cibertec.finalproject.R;
+import com.project.cibertec.finalproject.dao.ClienteDAO;
+import com.project.cibertec.finalproject.entities.Cliente;
 
 public class ClientesNuevoActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    private TextInputLayout tilSecondName, tilSecondLast, tilSecondDoc, tilSecondAge;
+    private EditText edtCliNuevoNombre, edtCliNuevoApellido, edtCliNuevoTlf, edtCliNuevoCorreo,
+            edtCliNuevoEmpresa, edtCliNuevoDireccion, edtCliNuevoDistrito, edtCliNuevoReferencia;
     private GoogleMap mGoogleMap;
+    private Cliente mCliente;
+    private boolean isUpdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +37,40 @@ public class ClientesNuevoActivity extends AppCompatActivity implements OnMapRea
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle(R.string.tituloClienteNuevo);
 
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.fragMap);
         mapFragment.getMapAsync(ClientesNuevoActivity.this);
+
+        edtCliNuevoNombre = (EditText) findViewById(R.id.edtCliNuevoNombre);
+        edtCliNuevoApellido = (EditText) findViewById(R.id.edtCliNuevoApellido);
+        edtCliNuevoTlf = (EditText) findViewById(R.id.edtCliNuevoTlf);
+        edtCliNuevoCorreo = (EditText) findViewById(R.id.edtCliNuevoCorreo);
+        edtCliNuevoEmpresa = (EditText) findViewById(R.id.edtCliNuevoEmpresa);
+        edtCliNuevoDireccion = (EditText) findViewById(R.id.edtCliNuevoDireccion);
+        edtCliNuevoDistrito = (EditText) findViewById(R.id.edtCliNuevoDistrito);
+        edtCliNuevoReferencia = (EditText) findViewById(R.id.edtCliNuevoReferencia);
+
+        if (getIntent().getExtras() != null && getIntent().getExtras().containsKey("cliente")) {
+            mCliente = (Cliente) getIntent().getExtras().get("cliente");
+            isUpdate = true;
+            setTitle(mCliente.getEmpresa());
+            fillData();
+        } else {
+            mCliente = null;
+            isUpdate = false;
+            setTitle(R.string.tituloClienteNuevo);
+        }
+    }
+
+    private void fillData() {
+        edtCliNuevoNombre.setText(mCliente.getNombre());
+        edtCliNuevoApellido.setText(mCliente.getApellido());
+        edtCliNuevoTlf.setText(mCliente.getTelefono());
+        edtCliNuevoCorreo.setText(mCliente.getCorreo());
+        edtCliNuevoEmpresa.setText(mCliente.getEmpresa());
+        edtCliNuevoDireccion.setText(mCliente.getDireccion());
+        edtCliNuevoDistrito.setText(mCliente.getDistrito());
+        edtCliNuevoReferencia.setText(mCliente.getReferencia());
     }
 
     @Override
@@ -53,11 +90,94 @@ public class ClientesNuevoActivity extends AppCompatActivity implements OnMapRea
                 save();
                 return true;
             }
-
         return super.onOptionsItemSelected(item);
     }
 
+
     private void save() {
+
+        boolean isOK = true;
+
+//        tilSecondNombre.setError(null);
+//        tilSecondApellido.setError(null);
+//        tilSecondEdad.setError(null);
+//        tilSecondDni.setError(null);
+//        tilSecondNombre.setErrorEnabled(false);
+//        tilSecondApellido.setErrorEnabled(false);
+//        tilSecondEdad.setErrorEnabled(false);
+//        tilSecondDni.setErrorEnabled(false);
+
+//        if (tilSecondNombre.getEditText().getText().toString().trim().isEmpty()) {
+//            tilSecondNombre.setError("Ingrese su nombre");
+//            tilSecondNombre.setErrorEnabled(true);
+//            isOK = false;
+//        }
+//
+//        if (tilSecondApellido.getEditText().getText().toString().trim().isEmpty()) {
+//            tilSecondApellido.setError("Ingrese su apellido");
+//            tilSecondApellido.setErrorEnabled(true);
+//            isOK = false;
+//        }
+//        if (tilSecondEdad.getEditText().getText().toString().trim().isEmpty()) {
+//            tilSecondEdad.setError("Ingrese su edad");
+//            tilSecondEdad.setErrorEnabled(true);
+//            isOK = false;
+//        }
+//        if (tilSecondDni.getEditText().getText().toString().trim().isEmpty()) {
+//            tilSecondDni.setError("Ingrese su DNI");
+//            tilSecondDni.setErrorEnabled(true);
+//            isOK = false;
+//        } else {
+//            if (tilSecondDni.getEditText().getText().toString().trim().length() < 8) {
+//                tilSecondDni.setError("El DNI es de 8 caracteres");
+//                tilSecondDni.setErrorEnabled(true);
+//                isOK = false;
+//            }
+//        }
+
+        if (isOK) {
+            if (mCliente == null)
+
+                mCliente = new Cliente();
+
+            mCliente.setNombre(edtCliNuevoNombre.getText().toString().trim());
+            mCliente.setApellido(edtCliNuevoApellido.getText().toString().trim());
+            mCliente.setTelefono(edtCliNuevoTlf.getText().toString().trim());
+            mCliente.setCorreo(edtCliNuevoCorreo.getText().toString().trim());
+            mCliente.setEmpresa(edtCliNuevoEmpresa.getText().toString().trim());
+            mCliente.setDireccion(edtCliNuevoDireccion.getText().toString().trim());
+            mCliente.setDistrito(edtCliNuevoDistrito.getText().toString().trim());
+            mCliente.setReferencia(edtCliNuevoReferencia.getText().toString().trim());
+            mCliente.setLatitud("-12.112328");
+            mCliente.setLongitud("-76.978473");
+            //
+            if (isUpdate) {
+                boolean isUpdated = new ClienteDAO().updateCliente(mCliente);
+                if (isUpdated) {
+                    Toast.makeText(ClientesNuevoActivity.this, mCliente.getNombre() + " " + mCliente.getApellido() + " ha sido actualizdo", Toast.LENGTH_LONG).show();
+                    finish();
+                } else
+                    new AlertDialog.Builder(ClientesNuevoActivity.this).setTitle(R.string.app_name).setMessage("No se pudo actualizar en la base de datos").setNegativeButton("Aceptar", null).show();
+            } else {
+                boolean isInserted = new ClienteDAO().insertCliente(mCliente);
+                if (isInserted) {
+                    Toast.makeText(ClientesNuevoActivity.this, mCliente.getNombre() + " " + mCliente.getApellido() + " ha sido registrado", Toast.LENGTH_LONG).show();
+                    finish();
+                } else
+                    new AlertDialog.Builder(ClientesNuevoActivity.this).setTitle(R.string.app_name).setMessage("No se pudo regristrar en la base de datos").setNegativeButton("Aceptar", null).show();
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
    /*     if (tilSecondName.getEditText().getText().toString().trim().isEmpty())
             showMessage("Ingrese su nombre");
         else if (tilSecondLast.getEditText().getText().toString().trim().isEmpty())
@@ -75,11 +195,13 @@ public class ClientesNuevoActivity extends AppCompatActivity implements OnMapRea
 //            person.setDoc(tilSecondDoc.getEditText().getText().toString().trim());
 //            person.setAge(Integer.parseInt(tilSecondAge.getEditText().getText().toString().trim()));
 //            person.setPhone(tilSecondPhone.getEditText().getText().toString().trim());
-            Intent intent = new Intent();
-//            intent.putExtra("person", person);
-            setResult(RESULT_OK, intent);
-            finish();
-   //     }
+        //            intent.putExtra("person", person);
+
+
+        Intent intent = new Intent();
+
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     private void showMessage(String message) {
@@ -100,7 +222,7 @@ public class ClientesNuevoActivity extends AppCompatActivity implements OnMapRea
 
             mGoogleMap.clear();
             mGoogleMap.addMarker(new MarkerOptions().position(latLng));
-            mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,17));
+            mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
 
         }
     };

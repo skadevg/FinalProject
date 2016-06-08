@@ -223,11 +223,10 @@ public class ClientesListaActivity extends AppCompatActivity implements IRVAdapt
 
     @Override
     public void onItemMapPinClick(Cliente cliente) {
-
     }
 
     @Override
     public void onItemPhoneClick(Cliente cliente) {
-
     }
+
 }

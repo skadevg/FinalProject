@@ -1,5 +1,6 @@
 package com.project.cibertec.finalproject.dao;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 
 import com.project.cibertec.finalproject.database.DataBaseSingleton;
@@ -46,4 +47,37 @@ public class ClienteDAO {
         return cliente;
     }
 
+    public boolean updateCliente(Cliente cliente) {
+        ContentValues cv = new ContentValues();
+        cv.put("nombre", cliente.getNombre());
+        cv.put("apellido", cliente.getApellido());
+        cv.put("telefono", cliente.getTelefono());
+        cv.put("correo", cliente.getCorreo());
+        cv.put("empresa", cliente.getEmpresa());
+        cv.put("direccion", cliente.getDireccion());
+        cv.put("distrito", cliente.getDistrito());
+        cv.put("referencia", cliente.getReferencia());
+        cv.put("latitud", cliente.getLatitud());
+        cv.put("longitud", cliente.getLongitud());
+
+        int update = DataBaseSingleton.getInstance().update("TB_Cliente", cv, "clienteId = ?", new String[]{String.valueOf(cliente.getClienteId())});
+        return update > 0;
+    }
+
+    public boolean insertCliente(Cliente cliente) {
+        ContentValues cv = new ContentValues();
+        cv.put("nombre", cliente.getNombre());
+        cv.put("apellido", cliente.getApellido());
+        cv.put("telefono", cliente.getTelefono());
+        cv.put("correo", cliente.getCorreo());
+        cv.put("empresa", cliente.getEmpresa());
+        cv.put("direccion", cliente.getDireccion());
+        cv.put("distrito", cliente.getDistrito());
+        cv.put("referencia", cliente.getReferencia());
+        cv.put("latitud", cliente.getLatitud());
+        cv.put("longitud", cliente.getLongitud());
+
+        long inserto = DataBaseSingleton.getInstance().insert("TB_Cliente", null, cv);
+        return inserto != -1;
+    }
 }
