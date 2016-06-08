@@ -4,6 +4,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.project.cibertec.finalproject.database.DataBaseHelper;
+import com.project.cibertec.finalproject.database.DataBaseSingleton;
+
+import java.io.IOException;
+
 public class SplashActivity extends AppCompatActivity {
 
     @Override
@@ -16,6 +21,13 @@ public class SplashActivity extends AppCompatActivity {
             public void run(){
                 try{
                     sleep(3000);
+                    DataBaseHelper dataBaseHelper = new DataBaseHelper(SplashActivity.this);
+                    try {
+                        dataBaseHelper.createDataBase();
+                        new DataBaseSingleton(SplashActivity.this);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }catch(InterruptedException e){
                     e.printStackTrace();
                 }finally{

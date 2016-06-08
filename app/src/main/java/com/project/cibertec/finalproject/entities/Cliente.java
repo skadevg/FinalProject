@@ -156,4 +156,5 @@ public class Cliente implements Parcelable {
             return new Cliente[size];
         }
     };
+
 }
