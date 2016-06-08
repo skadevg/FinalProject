@@ -49,7 +49,7 @@ public class PedidosListaActivity extends AppCompatActivity{
         setTitle(R.string.tituloPedidoLista);
 
         //Inflo el recycler y configuramos el Adapter
-        mRVPedidosListado = (RecyclerView) findViewById(R.id.rvPedidosLista);
+        mRVPedidosListado = (RecyclerView) findViewById(R.id.rvPedidosSeleccion);
         mRVPedidosListado.setLayoutManager(new LinearLayoutManager(PedidosListaActivity.this));
         mRVPedidosListado.setHasFixedSize(true);
 
