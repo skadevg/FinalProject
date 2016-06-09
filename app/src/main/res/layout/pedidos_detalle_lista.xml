@@ -15,6 +15,15 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
         android:elevation="@dimen/toolbarElevation"/>
 
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tituloProductosCarrito"
+        android:padding="6dp"
+        android:textStyle="bold"
+        android:gravity="center"/>
+
     <!-- RecyclerView que tiene los datos -->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvPedidosDetalle"

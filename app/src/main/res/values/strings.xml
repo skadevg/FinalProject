@@ -34,7 +34,9 @@
     <string name="tituloSeleccioneProducto">Seleccione un producto</string>
     <string name="tituloDetallePedido">Detalle del pedido</string>
 
+    <!-- Detalle Pedido Titulo -->
 
+    <string name="tituloProductosCarrito">Productos del Carrito</string>
 
     <!-- HINTS -->
     <string name="hintNombre">Nombre</string>
