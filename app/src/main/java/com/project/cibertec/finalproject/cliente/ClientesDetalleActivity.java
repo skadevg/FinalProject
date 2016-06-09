@@ -117,7 +117,6 @@ public class ClientesDetalleActivity extends AppCompatActivity implements IRVAda
                 onBackPressed();
                 return true;
             case R.id.abEdit:
-//                startActivityForResult(new Intent(ClientesDetalleActivity.this, ClientesNuevoActivity.class), 999);
                 onItemClick(mCliente);
                 return true;
             default:

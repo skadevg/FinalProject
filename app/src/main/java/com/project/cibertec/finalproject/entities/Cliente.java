@@ -2,12 +2,7 @@ package com.project.cibertec.finalproject.entities;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.StrictMode;
-import android.util.StringBuilderPrinter;
 
-/**
- * Created by thebe on 27/05/2016.
- */
 public class Cliente implements Parcelable {
     private int clienteId;
     private String nombre;

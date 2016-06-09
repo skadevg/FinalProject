@@ -20,10 +20,6 @@ public class RVAdapterListaCliente extends RecyclerView.Adapter<RVAdapterListaCl
 
     private ArrayList<Cliente> mLstCliente;
 
-    public RVAdapterListaCliente() {
-        mLstCliente = new ArrayList<>();
-    }
-
     private IRVAdapterListaClienteListener mIRVAdapterListaClienteListener;
 
     public RVAdapterListaCliente(IRVAdapterListaClienteListener mIRVAdapterListaClienteListener) {
@@ -41,7 +37,9 @@ public class RVAdapterListaCliente extends RecyclerView.Adapter<RVAdapterListaCl
         mLstCliente.addAll(lstCliente);
         notifyDataSetChanged();
     }
-
+    //    public RVAdapterListaCliente() {
+//        mLstCliente = new ArrayList<>();
+//    }
     @Override
     public RVAdapterListaClienteViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new RVAdapterListaClienteViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_lista_clientes_item, parent, false));

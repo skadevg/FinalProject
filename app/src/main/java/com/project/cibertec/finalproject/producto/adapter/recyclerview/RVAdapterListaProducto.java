@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.project.cibertec.finalproject.R;
 import com.project.cibertec.finalproject.entities.Producto;
+import com.project.cibertec.finalproject.producto.adapter.recyclerview.listeners.IRVAdapterListaProductoListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +20,11 @@ public class RVAdapterListaProducto extends RecyclerView.Adapter<RVAdapterListaP
 
     private ArrayList<Producto> mLstProducto;
 
-    public RVAdapterListaProducto() {
+    private IRVAdapterListaProductoListener mIRVAdapterListaProductoListener;
+
+    public RVAdapterListaProducto(IRVAdapterListaProductoListener mIRVAdapterListaProductoListener) {
         mLstProducto = new ArrayList<>();
+        this.mIRVAdapterListaProductoListener = mIRVAdapterListaProductoListener;
     }
 
     public void add(Producto producto) {
@@ -28,8 +32,10 @@ public class RVAdapterListaProducto extends RecyclerView.Adapter<RVAdapterListaP
         notifyItemInserted(mLstProducto.size() - 1);
     }
 
-    public void addAll(ArrayList<Producto> producto) {
-        mLstProducto.addAll(producto);
+    public void clearAndAddAll(ArrayList<Producto> lstProducto) {
+        mLstProducto.clear();
+        mLstProducto.addAll(lstProducto);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -42,7 +48,10 @@ public class RVAdapterListaProducto extends RecyclerView.Adapter<RVAdapterListaP
         Producto producto = mLstProducto.get(position);
         holder.tvProductoListItemNombre.setText(producto.getNombreProducto());
         holder.tvProductoListItemDesc.setText(producto.getDescripcionProducto());
-        holder.tvProductoListItemPrecio.setText("S/ "+String.valueOf(producto.getPrecioProducto()));
+        holder.tvProductoListItemPrecio.setText("S/ " + String.valueOf(producto.getPrecioProducto()));
+
+        holder.itemView.setOnClickListener(itemViewOnClickListener);
+        holder.itemView.setTag(position);
     }
 
     @Override
@@ -62,8 +71,6 @@ public class RVAdapterListaProducto extends RecyclerView.Adapter<RVAdapterListaP
             tvProductoListItemPrecio = (TextView) itemView.findViewById(R.id.tvProductoListItemPrecio);
         }
     }
-
-
 
     public void animateTo(ArrayList<Producto> productos) {
         applyAndAnimateRemovals(productos);
@@ -115,5 +122,21 @@ public class RVAdapterListaProducto extends RecyclerView.Adapter<RVAdapterListaP
         mLstProducto.add(toPosition, model);
         notifyItemMoved(fromPosition, toPosition);
     }
+
+    public void addAll(ArrayList<Producto> producto) {
+        mLstProducto.addAll(producto);
+    }
+
+    public RVAdapterListaProducto() {
+        mLstProducto = new ArrayList<>();
+    }
+
+    View.OnClickListener itemViewOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            mIRVAdapterListaProductoListener.onItemClick(mLstProducto.get((Integer) v.getTag()));
+        }
+    };
+
 
 }

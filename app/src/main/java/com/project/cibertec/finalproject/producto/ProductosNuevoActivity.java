@@ -1,18 +1,29 @@
 package com.project.cibertec.finalproject.producto;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.project.cibertec.finalproject.R;
+import com.project.cibertec.finalproject.dao.ProductoDAO;
+import com.project.cibertec.finalproject.entities.Producto;
+
 
 /**
  * Created by PC on 31/05/2016.
  */
-public class ProductosNuevoActivity extends AppCompatActivity{
+public class ProductosNuevoActivity extends AppCompatActivity {
+
+    private EditText edtProNuevoNombre, edtProNuevoDescripcion, edtProNuevoPreUnitario;
+    private Producto mProducto;
+    private boolean isUpdate;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,6 +34,27 @@ public class ProductosNuevoActivity extends AppCompatActivity{
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(R.string.tituloProductoNuevo);
+
+        edtProNuevoNombre = (EditText) findViewById(R.id.edtProNuevoNombre);
+        edtProNuevoDescripcion = (EditText) findViewById(R.id.edtProNuevoDescripcion);
+        edtProNuevoPreUnitario = (EditText) findViewById(R.id.edtProNuevoPreUnitario);
+
+        if (getIntent().getExtras() != null && getIntent().getExtras().containsKey("producto")) {
+            mProducto = (Producto) getIntent().getExtras().get("producto");
+            isUpdate = true;
+            setTitle(mProducto.getNombreProducto());
+            fillData();
+        } else {
+            mProducto = null;
+            isUpdate = false;
+            setTitle(R.string.tituloProductoNuevo);
+        }
+    }
+
+    private void fillData() {
+        edtProNuevoNombre.setText(mProducto.getNombreProducto());
+        edtProNuevoDescripcion.setText(mProducto.getDescripcionProducto());
+        edtProNuevoPreUnitario.setText(String.valueOf(mProducto.getPrecioProducto()));
     }
 
     @Override
@@ -34,16 +66,52 @@ public class ProductosNuevoActivity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
                 return true;
             case R.id.abSecondSave:
-                finish();
+                save();
                 return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void save() {
+
+        boolean isOK = true;
+
+        if (isOK) {
+            if (mProducto == null)
+
+                mProducto = new Producto();
+
+            mProducto.setNombreProducto(edtProNuevoNombre.getText().toString().trim());
+            mProducto.setDescripcionProducto(edtProNuevoDescripcion.getText().toString().trim());
+            mProducto.setPrecioProducto(Double.parseDouble(edtProNuevoPreUnitario.getText().toString().trim()));
+
+            if (isUpdate) {
+                boolean isUpdated = new ProductoDAO().updateProducto(mProducto);
+                if (isUpdated) {
+                    Toast.makeText(ProductosNuevoActivity.this, mProducto.getNombreProducto() + " " + mProducto.getDescripcionProducto() + " ha sido actualizdo", Toast.LENGTH_LONG).show();
+                    finish();
+                } else
+                    new AlertDialog.Builder(ProductosNuevoActivity.this).setTitle(R.string.app_name).setMessage("No se pudo actualizar en la base de datos").setNegativeButton("Aceptar", null).show();
+            } else {
+                boolean isInserted = new ProductoDAO().insertProducto(mProducto);
+                if (isInserted) {
+                    Toast.makeText(ProductosNuevoActivity.this, mProducto.getNombreProducto() + " " + mProducto.getDescripcionProducto() + " ha sido registrado", Toast.LENGTH_LONG).show();
+                    finish();
+                } else
+                    new AlertDialog.Builder(ProductosNuevoActivity.this).setTitle(R.string.app_name).setMessage("No se pudo regristrar en la base de datos").setNegativeButton("Aceptar", null).show();
+            }
         }
 
+        Intent intent = new Intent();
+
+        setResult(RESULT_OK, intent);
+        finish();
     }
+
+
 }
