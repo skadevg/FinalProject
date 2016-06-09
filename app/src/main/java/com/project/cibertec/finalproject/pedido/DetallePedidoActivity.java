@@ -12,9 +12,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.project.cibertec.finalproject.R;
+import com.project.cibertec.finalproject.dao.PedidoDAO;
 import com.project.cibertec.finalproject.entities.Cliente;
+import com.project.cibertec.finalproject.entities.Pedido;
 import com.project.cibertec.finalproject.entities.Producto;
+import com.project.cibertec.finalproject.pedido.adapter.recyclerview.RVAdapterListaPedido;
 import com.project.cibertec.finalproject.pedido.adapter.recyclerview.SPAdapter;
+import com.project.cibertec.finalproject.pedido.adapter.recyclerview.listeners.IRVAdapterListaPedidoListener;
 import com.project.cibertec.finalproject.producto.adapter.recyclerview.RVAdapterListaProducto;
 
 import java.util.ArrayList;
@@ -22,7 +26,7 @@ import java.util.ArrayList;
 /**
  * Created by V825727 on 6/7/2016.
  */
-public class DetallePedidoActivity extends AppCompatActivity {
+public class DetallePedidoActivity extends AppCompatActivity implements IRVAdapterListaPedidoListener {
 
     private Spinner spClientes;
     private SPAdapter spFirstAdapter;
@@ -32,7 +36,8 @@ public class DetallePedidoActivity extends AppCompatActivity {
     private RVAdapterListaProducto mRVAdapterListaProducto ;
     private ArrayList<Producto> mListaProducto;
 
-    private Cliente mCliente = null;
+    private Pedido mPedido = null;
+    private RVAdapterListaPedido mRVAdapterListaDetailPedido;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,24 +50,21 @@ public class DetallePedidoActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(R.string.tituloDetallePedido);
 
+
         //Inflo el recycler y configuramos el Adapter
         mRVProductosListado = (RecyclerView) findViewById(R.id.rvPedidosDetalle);
         mRVProductosListado.setLayoutManager(new LinearLayoutManager(DetallePedidoActivity.this));
         mRVProductosListado.setHasFixedSize(true);
 
-        mRVAdapterListaProducto = new RVAdapterListaProducto();
-        mListaProducto = new ArrayList<>();
-        Producto producto = new Producto();
-        producto.setNombreProducto("Sprite");
-        producto.setDescripcionProducto("Esta es una gaseosa");
-        producto.setPrecioProducto(5.4);
-        mListaProducto.add(producto);
+        if (getIntent().getExtras().containsKey("detallePedido")) {
 
-        producto = new Producto();
-        producto.setNombreProducto("Coca Cola");
-        producto.setDescripcionProducto("Esta es una Coke");
-        producto.setPrecioProducto(10.5);
-        mListaProducto.add(producto);
+            mPedido = (Pedido) getIntent().getExtras().get("detallePedido");
+
+            mRVAdapterListaDetailPedido.clearAndAddAllDetail(new PedidoDAO().listDetailPedido(mPedido.getIdPedido()));
+
+        }
+
+        mRVAdapterListaDetailPedido = new RVAdapterListaPedido(DetallePedidoActivity.this);
 
         mRVAdapterListaProducto.addAll(mListaProducto);
         mRVProductosListado.setAdapter(mRVAdapterListaProducto);
@@ -71,7 +73,7 @@ public class DetallePedidoActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_add_save, menu);
+        getMenuInflater().inflate(R.menu.menu_delete, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -82,14 +84,17 @@ public class DetallePedidoActivity extends AppCompatActivity {
             case android.R.id.home:
                 onBackPressed();
                 return true;
-            case R.id.abFirstAdd:
-
+            case R.id.abFirstDelete:
                 //
-                return true;
-            case R.id.abSecondSave:
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onItemClick(Pedido pedido) {
+
+
     }
 }

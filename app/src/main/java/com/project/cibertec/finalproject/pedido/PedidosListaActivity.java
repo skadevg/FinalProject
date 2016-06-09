@@ -16,14 +16,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.project.cibertec.finalproject.R;
-import com.project.cibertec.finalproject.entities.Cliente;
+import com.project.cibertec.finalproject.cliente.ClientesDetalleActivity;
+import com.project.cibertec.finalproject.cliente.adapter.recyclerview.listeners.IRVAdapterListaClienteListener;
+import com.project.cibertec.finalproject.dao.PedidoDAO;
+
 import com.project.cibertec.finalproject.entities.Pedido;
 import com.project.cibertec.finalproject.pedido.adapter.recyclerview.RVAdapterListaPedido;
 import com.project.cibertec.finalproject.pedido.adapter.recyclerview.SPAdapter;
+import com.project.cibertec.finalproject.pedido.adapter.recyclerview.listeners.IRVAdapterListaPedidoListener;
 
 import java.util.ArrayList;
 
-public class PedidosListaActivity extends AppCompatActivity{
+public class PedidosListaActivity extends AppCompatActivity implements IRVAdapterListaPedidoListener{
 
     private RVAdapterListaPedido mRVAdapterListaPedido;
 
@@ -36,7 +40,7 @@ public class PedidosListaActivity extends AppCompatActivity{
     private SPAdapter spFirstAdapter;
     private TextView tvClienteNombrePedido;
 
-    private Cliente mCliente = null;
+    private Pedido mCliente = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,28 +57,7 @@ public class PedidosListaActivity extends AppCompatActivity{
         mRVPedidosListado.setLayoutManager(new LinearLayoutManager(PedidosListaActivity.this));
         mRVPedidosListado.setHasFixedSize(true);
 
-        mRVAdapterListaPedido = new RVAdapterListaPedido();
-
-        mListaPedidos = new ArrayList<>();
-        Pedido pedido = new Pedido();
-        pedido.setNombreCliente("Embotelladora García");
-        pedido.setCantidadProductos(10);
-        pedido.setTotalPedido(53.20);
-        mListaPedidos.add(pedido);
-
-        pedido = new Pedido();
-        pedido.setNombreCliente("Gloria S.A");
-        pedido.setCantidadProductos(23);
-        pedido.setTotalPedido(102.50);
-        mListaPedidos.add(pedido);
-
-        pedido = new Pedido();
-        pedido.setNombreCliente("Molitalia SRL");
-        pedido.setCantidadProductos(33);
-        pedido.setTotalPedido(301.5);
-        mListaPedidos.add(pedido);
-
-        mRVAdapterListaPedido.addAll(mListaPedidos);
+        mRVAdapterListaPedido = new RVAdapterListaPedido(PedidosListaActivity.this);
         mRVPedidosListado.setAdapter(mRVAdapterListaPedido);
     }
 
@@ -84,6 +67,12 @@ public class PedidosListaActivity extends AppCompatActivity{
         return super.onCreateOptionsMenu(menu);
     }
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mRVAdapterListaPedido.clearAndAddAll(new PedidoDAO().listPedidos());
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -97,5 +86,13 @@ public class PedidosListaActivity extends AppCompatActivity{
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onItemClick(Pedido pedido) {
+
+        Intent detallePedido = new Intent(PedidosListaActivity.this, DetallePedidoActivity.class);
+        detallePedido.putExtra("detallePedido", pedido);
+        startActivity(detallePedido);
     }
 }

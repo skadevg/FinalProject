@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.project.cibertec.finalproject.R;
+
 import com.project.cibertec.finalproject.entities.Pedido;
+import com.project.cibertec.finalproject.pedido.adapter.recyclerview.listeners.IRVAdapterListaPedidoListener;
 
 import java.util.ArrayList;
 
@@ -15,9 +17,14 @@ import java.util.ArrayList;
 public class RVAdapterListaPedido extends RecyclerView.Adapter<RVAdapterListaPedido.RVAdapterListaPedidoViewHolder> {
 
     private ArrayList<Pedido> mLstPedido;
+    private ArrayList<Pedido> mLstDetailPedido;
 
-    public RVAdapterListaPedido() {
+    private IRVAdapterListaPedidoListener mIRVAdapterListaPedidoListener;
+
+    public RVAdapterListaPedido(IRVAdapterListaPedidoListener mIRVAdapterListaPedidoListener ) {
         mLstPedido = new ArrayList<>();
+        mLstDetailPedido = new ArrayList<>();
+        this.mIRVAdapterListaPedidoListener = mIRVAdapterListaPedidoListener;
     }
 
     public void add(Pedido pedido) {
@@ -37,7 +44,7 @@ public class RVAdapterListaPedido extends RecyclerView.Adapter<RVAdapterListaPed
     @Override
     public void onBindViewHolder(RVAdapterListaPedidoViewHolder holder, int position) {
         Pedido pedido = mLstPedido.get(position);
-        holder.tvPedidoListItemNombreCli.setText(pedido.getNombreCliente());
+        holder.tvPedidoListItemNombreCli.setText(pedido.getEmpresa());
         holder.tvPedidoListItemCantProductos.setText(String.valueOf(pedido.getCantidadProductos()).concat(" productos"));
         holder.tvPedidoListItemTotal.setText("S/ "+String.valueOf(pedido.getTotalPedido()));
     }
@@ -59,5 +66,17 @@ public class RVAdapterListaPedido extends RecyclerView.Adapter<RVAdapterListaPed
             tvPedidoListItemTotal = (TextView) itemView.findViewById(R.id.tvPedidoListItemTotal);
         }
     }
+
+    public void clearAndAddAll(ArrayList<Pedido> lstPedido) {
+        mLstPedido.clear();
+        mLstPedido.addAll(lstPedido);
+        notifyDataSetChanged();
+    }
+    public void clearAndAddAllDetail (ArrayList<Pedido> lstPedido) {
+        mLstDetailPedido.clear();
+        mLstDetailPedido.addAll(lstPedido);
+        notifyDataSetChanged();
+    }
+
 
 }
