@@ -11,9 +11,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-/**
- * Created by Android-SAB-PM on 14/05/2016.
- */
 public class DataBaseHelper extends SQLiteOpenHelper {
 
     //The Android's default system path of your application database.

@@ -2,30 +2,28 @@ package com.project.cibertec.finalproject.cliente;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.project.cibertec.finalproject.R;
 import com.project.cibertec.finalproject.entities.Cliente;
@@ -47,8 +45,6 @@ public class ClientesMapActivity extends AppCompatActivity implements OnMapReady
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        getMyLocation();
-
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.fragMap);
         mapFragment.getMapAsync(ClientesMapActivity.this);
 
@@ -57,18 +53,46 @@ public class ClientesMapActivity extends AppCompatActivity implements OnMapReady
             setTitle(mCliente.getEmpresa());
         }
 
+        getMyLocation();
+
     }
 
     private void getMyLocation() {
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, locationListener);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
+
+        if ( !locationManager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+            buildAlertMessageNoGps();
+        }else{
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, locationListener);
+            mLocation = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+            if(mLocation != null)
+                mLatLong = new LatLng(mLocation.getLatitude(), mLocation.getLongitude());
         }
-        mLocation = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
-        if(mLocation != null){
-            mLatLong = new LatLng(mLocation.getLatitude(), mLocation.getLongitude());
-        }
+
+
+    }
+
+
+    private void buildAlertMessageNoGps() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("El GPS parece estar deshabilitado, ¿Desea activarlo?")
+                .setCancelable(false)
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        dialog.cancel();
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
     }
 
 
@@ -89,7 +113,7 @@ public class ClientesMapActivity extends AppCompatActivity implements OnMapReady
 
         @Override
         public void onProviderDisabled(String provider) {
-
+            mLatLong = null;
         }
     };
 
@@ -101,24 +125,24 @@ public class ClientesMapActivity extends AppCompatActivity implements OnMapReady
         if(mCliente != null){
             LatLng latLng = new LatLng(Double.parseDouble(mCliente.getLatitud()),
                     Double.parseDouble(mCliente.getLongitud()));
-            mGoogleMap.addMarker(new MarkerOptions().position(latLng));
+            mGoogleMap.clear();
+            mGoogleMap.addMarker(new MarkerOptions().position(latLng).title("Posición del cliente"));
+
 
             if(mLatLong != null){
+                LatLngBounds.Builder builder = LatLngBounds.builder();
                 mGoogleMap.addMarker(new MarkerOptions().position(mLatLong)
                         .title("Mi posición actual")
                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_person_pin_circle_black_36dp)));
+                builder.include(latLng).include(mLatLong);
+                int width = getResources().getDisplayMetrics().widthPixels;
+                int height = getResources().getDisplayMetrics().heightPixels;
+                mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(),width,height,32));
             }else{
-                Toast.makeText(ClientesMapActivity.this,"Active el GPS para poder ver su ubicación",Toast.LENGTH_SHORT).show();
+                mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,17));
             }
 
 
-            LatLngBounds.Builder builder = LatLngBounds.builder();
-            builder.include(latLng).include(mLatLong);
-
-            int width = getResources().getDisplayMetrics().widthPixels;
-            int height = getResources().getDisplayMetrics().heightPixels;
-
-            mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(),width,height,32));
         }
 
     }

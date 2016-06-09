@@ -57,6 +57,12 @@ public class RVAdapterListaCliente extends RecyclerView.Adapter<RVAdapterListaCl
         holder.itemView.setOnClickListener(itemViewOnClickListener);
         holder.itemView.setTag(position);
 
+        holder.tvListCliItemTelefono.setOnClickListener(tvListCliItemTelefonoOnClickListener);
+        holder.tvListCliItemTelefono.setTag(position);
+
+        holder.ivListCliItemPuntero.setOnClickListener(ivListCliItemPunteroOnClickListener);
+        holder.ivListCliItemPuntero.setTag(position);
+
     }
 
     @Override
@@ -79,10 +85,27 @@ public class RVAdapterListaCliente extends RecyclerView.Adapter<RVAdapterListaCl
         }
     }
 
+    //Evento click en la fila
     View.OnClickListener itemViewOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             mIRVAdapterListaClienteListener.onItemClick(mLstCliente.get((Integer) v.getTag()));
+        }
+    };
+
+    //Evento click en el telefono
+    View.OnClickListener  tvListCliItemTelefonoOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            mIRVAdapterListaClienteListener.onItemPhoneClick(mLstCliente.get((Integer) v.getTag()));
+        }
+    };
+
+    //Evento click en el mapa
+    View.OnClickListener ivListCliItemPunteroOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            mIRVAdapterListaClienteListener.onItemMapPinClick(mLstCliente.get((Integer) v.getTag()));
         }
     };
 

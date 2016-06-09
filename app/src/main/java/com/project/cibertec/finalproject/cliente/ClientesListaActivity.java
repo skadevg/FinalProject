@@ -1,12 +1,17 @@
 package com.project.cibertec.finalproject.cliente;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,6 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -181,10 +187,24 @@ public class ClientesListaActivity extends AppCompatActivity implements IRVAdapt
 
     @Override
     public void onItemMapPinClick(Cliente cliente) {
+        Intent mapaCliente = new Intent(ClientesListaActivity.this, ClientesMapActivity.class);
+        mapaCliente.putExtra("cliente", cliente);
+        startActivity(mapaCliente);
     }
 
     @Override
     public void onItemPhoneClick(Cliente cliente) {
+        try {
+            Intent callIntent = new Intent(Intent.ACTION_DIAL, null);
+            callIntent.setData(Uri.parse("tel:" + cliente.getTelefono()));
+            if (ActivityCompat.checkSelfPermission(ClientesListaActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
+            startActivity(callIntent);
+        } catch (ActivityNotFoundException activityException) {
+            Log.d("Calling a Phone Number", "Call failed"
+                    + activityException);
+        }
     }
 
 }

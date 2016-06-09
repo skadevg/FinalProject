@@ -18,7 +18,7 @@
     <string name="CerrarSesion">Cerrar Sesión</string>
 
     <!-- API DE GOOGLE MAPS-->
-    <string name="google_api_key">AIzaSyDPioNi1f50vTU06yZFSe-Th-UXgodb8v0</string>
+    <string name="google_api_key">AIzaSyC2pJOJvVqfVyr4osqbJ8VswrFwJMuDalE</string>
 
     <!-- TOOLBAR MENU TITULOS-->
     <string name="action_search">Buscar</string>
@@ -49,6 +49,14 @@
     <string name="hintReferencia">Referencia</string>
     <string name="hintDescripcion">Descripción</string>
     <string name="hintPrecioUnitario">Precio unitario</string>
+    <string name="hintCliente">Cliente</string>
+    <string name="hintMonto">Monto</string>
+    <string name="hintCantidad">Cantidad</string>
+    <string name="hintTotal">Total: </string>
+    <string name="hintAgregarAlcarrito">Agregar al carrito </string>
+    <string name="hintElijaCantidad">Elija la cantidad: </string>
+    <string name="hintProductoSeleccionado">Producto seleccionado</string>
+    <string name="hintProductoCarrito">Productos del carrito</string>
 
     <!-- Botones -->
     <string name="btnNuevoPedido">Nuevo pedido</string>

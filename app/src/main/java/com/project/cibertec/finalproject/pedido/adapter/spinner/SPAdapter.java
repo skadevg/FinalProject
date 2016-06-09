@@ -1,4 +1,4 @@
-package com.project.cibertec.finalproject.pedido.adapter.recyclerview;
+package com.project.cibertec.finalproject.pedido.adapter.spinner;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -17,7 +17,7 @@ import com.project.cibertec.finalproject.R;
 /**
  * Created by V825727 on 6/6/2016.
  */
-public class SPAdapter extends ArrayAdapter <Cliente>{
+public class SPAdapter extends ArrayAdapter<Cliente>{
 
 
     public SPAdapter (Context context){

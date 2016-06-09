@@ -3,49 +3,29 @@ package com.project.cibertec.finalproject.pedido;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.project.cibertec.finalproject.R;
-import com.project.cibertec.finalproject.cliente.ClientesDetalleActivity;
-import com.project.cibertec.finalproject.cliente.adapter.recyclerview.listeners.IRVAdapterListaClienteListener;
 import com.project.cibertec.finalproject.dao.PedidoDAO;
 
 import com.project.cibertec.finalproject.entities.Pedido;
 import com.project.cibertec.finalproject.pedido.adapter.recyclerview.RVAdapterListaPedido;
-import com.project.cibertec.finalproject.pedido.adapter.recyclerview.SPAdapter;
 import com.project.cibertec.finalproject.pedido.adapter.recyclerview.listeners.IRVAdapterListaPedidoListener;
-
-import java.util.ArrayList;
 
 public class PedidosListaActivity extends AppCompatActivity implements IRVAdapterListaPedidoListener{
 
     private RVAdapterListaPedido mRVAdapterListaPedido;
-
-    private DrawerLayout dlMenu;
-    private ActionBarDrawerToggle mActionBarDrawerToggle;
-    private NavigationView nvMenu;
     private RecyclerView mRVPedidosListado;
-    private ArrayList<Pedido> mListaPedidos;
-    private Spinner spClientes;
-    private SPAdapter spFirstAdapter;
-    private TextView tvClienteNombrePedido;
-
-    private Pedido mCliente = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pedidos_seleccione_producto);
+        setContentView(R.layout.pedidos_lista_activity);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarPedidosList);
         setSupportActionBar(toolbar);
@@ -53,7 +33,7 @@ public class PedidosListaActivity extends AppCompatActivity implements IRVAdapte
         setTitle(R.string.tituloPedidoLista);
 
         //Inflo el recycler y configuramos el Adapter
-        mRVPedidosListado = (RecyclerView) findViewById(R.id.rvPedidosDetalle);
+        mRVPedidosListado = (RecyclerView) findViewById(R.id.rvPedidosLista);
         mRVPedidosListado.setLayoutManager(new LinearLayoutManager(PedidosListaActivity.this));
         mRVPedidosListado.setHasFixedSize(true);
 

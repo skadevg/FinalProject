@@ -130,9 +130,6 @@ public class ProductosListaActivity extends AppCompatActivity implements IRVAdap
 
     @Override
     public void onItemClick(Producto producto) {
-//        Intent intent = new Intent(ProductosListaActivity.this, ProductosNuevoActivity.class);
-//        intent.putExtra("producto", (Parcelable) producto);
-//        startActivity(intent);
         Intent intent = new Intent(ProductosListaActivity.this, ProductosNuevoActivity.class);
         intent.putExtra("producto", producto);
         startActivity(intent);

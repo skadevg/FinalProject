@@ -7,7 +7,7 @@
 
     <!-- Toolbar que va a reemplazar al actionbar -->
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbarNuevoPedidoList"
+        android:id="@+id/toolbarPedidosList"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
@@ -21,22 +21,15 @@
         android:orientation="vertical"
         android:background="@color/colorPrimary">
 
-        <Spinner
-            android:id="@+id/spClientes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"/>
-
         <TextView
-            android:id="@+id/tvClienteNombrePedido"
-            android:layout_width="match_parent"
+            android:id="@+id/tvPedidoDetalleCliente"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:visibility="gone"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/colorBlank"/>
+            android:textColor="@color/colorBlank"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"/>
 
         <TextView
             android:text="@string/hintCliente"
@@ -49,24 +42,13 @@
 
     </LinearLayout>
 
-
-    <TextView
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/hintProductoCarrito"
-        android:padding="6dp"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:textColor="@color/cardview_dark_background"
-        android:gravity="center"/>
-
     <!-- RecyclerView que tiene los datos -->
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvPedidosNuevo"
+        android:id="@+id/rvPedidosDetalle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -85,7 +67,7 @@
             android:textSize="18sp"/>
 
         <TextView
-            android:id="@+id/tvPedidoNuevoTotal"
+            android:id="@+id/tvPedidoDetalleTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorBlank"

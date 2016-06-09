@@ -5,7 +5,5 @@ import com.project.cibertec.finalproject.entities.Pedido;
 public interface IRVAdapterListaPedidoListener {
 
     void onItemClick(Pedido pedido);
-    //void onItemMapPinClick(Cliente cliente);
-    //void onItemPhoneClick(Cliente cliente);
 
 }

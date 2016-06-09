@@ -47,7 +47,19 @@ public class RVAdapterListaPedido extends RecyclerView.Adapter<RVAdapterListaPed
         holder.tvPedidoListItemNombreCli.setText(pedido.getEmpresa());
         holder.tvPedidoListItemCantProductos.setText(String.valueOf(pedido.getCantidadProductos()).concat(" productos"));
         holder.tvPedidoListItemTotal.setText("S/ "+String.valueOf(pedido.getTotalPedido()));
+
+        holder.itemView.setOnClickListener(itemViewOnClickListener);
+        holder.itemView.setTag(position);
+
     }
+
+    //Evento click en la fila
+    View.OnClickListener itemViewOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            mIRVAdapterListaPedidoListener.onItemClick(mLstPedido.get((Integer) v.getTag()));
+        }
+    };
 
     @Override
     public int getItemCount() {

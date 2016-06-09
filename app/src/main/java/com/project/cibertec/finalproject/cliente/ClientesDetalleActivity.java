@@ -19,14 +19,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.project.cibertec.finalproject.R;
-import com.project.cibertec.finalproject.cliente.adapter.recyclerview.listeners.IRVAdapterListaClienteListener;
 import com.project.cibertec.finalproject.entities.Cliente;
 import com.project.cibertec.finalproject.pedido.NuevoPedidoActivity;
-import com.project.cibertec.finalproject.pedido.PedidosListaActivity;
 
 
-public class ClientesDetalleActivity extends AppCompatActivity implements IRVAdapterListaClienteListener {
-
+public class ClientesDetalleActivity extends AppCompatActivity {
 
     private TextView tvClienteDetNombre, tvClienteDetApellido, tvClienteDetCorreo, tvClienteDetTelefono,
             tvClienteDetDireccion, tvClienteDetDistrito, tvClienteDetReferencia;
@@ -57,8 +54,8 @@ public class ClientesDetalleActivity extends AppCompatActivity implements IRVAda
         ivListCliItemPuntero.setOnClickListener(ivListCliItemPunteroOnClickListener);
 
         btnCliDetNuevoPedido = (Button) findViewById(R.id.btnCliDetNuevoPedido);
-
         btnCliDetNuevoPedido.setOnClickListener(onClickListenerbtnCliDetNuevoPedido);
+
         if (getIntent().getExtras().containsKey("cliente")) {
             mCliente = (Cliente) getIntent().getExtras().get("cliente");
             setTitle(mCliente.getEmpresa());
@@ -89,15 +86,15 @@ public class ClientesDetalleActivity extends AppCompatActivity implements IRVAda
         @Override
         public void onClick(View v) {
             Intent mapa = new Intent(ClientesDetalleActivity.this, ClientesMapActivity.class);
-            mapa.putExtra("cliente", mCliente);
+            mapa.putExtra("cliente",mCliente);
             startActivity(mapa);
         }
     };
+
     View.OnClickListener onClickListenerbtnCliDetNuevoPedido = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Intent nuevoPedido = new Intent(ClientesDetalleActivity.this, NuevoPedidoActivity.class);
-            //nuevoPedido.putExtra("hideSpinner", true);
             nuevoPedido.putExtra("cliente", mCliente);
             startActivity(nuevoPedido);
         }
@@ -112,19 +109,24 @@ public class ClientesDetalleActivity extends AppCompatActivity implements IRVAda
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+        switch (item.getItemId()){
             case android.R.id.home:
                 onBackPressed();
                 return true;
             case R.id.abEdit:
-                onItemClick(mCliente);
+                Intent intentEditar = new Intent(ClientesDetalleActivity.this,ClientesNuevoActivity.class);
+                intentEditar.putExtra("cliente",mCliente);
+                startActivity(intentEditar);
+                finish();
                 return true;
             default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
+
     }
 
-    private void fillData() {
+
+    private void fillData(){
         tvClienteDetNombre.setText(mCliente.getNombre());
         tvClienteDetApellido.setText(mCliente.getApellido());
         tvClienteDetCorreo.setText(mCliente.getCorreo());
@@ -132,21 +134,6 @@ public class ClientesDetalleActivity extends AppCompatActivity implements IRVAda
         tvClienteDetDireccion.setText(mCliente.getDireccion());
         tvClienteDetDistrito.setText(mCliente.getDistrito());
         tvClienteDetReferencia.setText(mCliente.getReferencia());
-    }
-
-    @Override
-    public void onItemClick(Cliente cliente) {
-        Intent intent = new Intent(ClientesDetalleActivity.this, ClientesNuevoActivity.class);
-        intent.putExtra("cliente", cliente);
-        startActivity(intent);
-    }
-
-    @Override
-    public void onItemMapPinClick(Cliente cliente) {
-    }
-
-    @Override
-    public void onItemPhoneClick(Cliente cliente) {
     }
 
 }
