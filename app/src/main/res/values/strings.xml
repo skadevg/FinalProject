@@ -49,6 +49,7 @@
     <string name="hintReferencia">Referencia</string>
     <string name="hintDescripcion">Descripción</string>
     <string name="hintPrecioUnitario">Precio unitario</string>
+    <string name="hintCantidad">Cantidad</string>
 
     <!-- Botones -->
     <string name="btnNuevoPedido">Nuevo pedido</string>

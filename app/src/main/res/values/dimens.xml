@@ -21,4 +21,7 @@
     <dimen name="size_title_contacto_nuevo_cliente">20sp</dimen>
     <dimen name="size_edittext_nuevo_cliente">14sp</dimen>
 
+    <!-- Hint sizes -->
+    <dimen name="hint_size_card">11sp</dimen>
+    <dimen name="size_label_screen_18">18sp</dimen>
 </resources>

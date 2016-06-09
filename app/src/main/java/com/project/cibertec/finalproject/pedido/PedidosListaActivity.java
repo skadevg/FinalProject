@@ -93,6 +93,7 @@ public class PedidosListaActivity extends AppCompatActivity implements IRVAdapte
 
         Intent detallePedido = new Intent(PedidosListaActivity.this, DetallePedidoActivity.class);
         detallePedido.putExtra("detallePedido", pedido);
+        detallePedido.putExtra("flagCantidadVisible", true);
         startActivity(detallePedido);
     }
 }

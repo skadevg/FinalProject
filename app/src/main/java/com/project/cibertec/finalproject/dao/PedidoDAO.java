@@ -36,8 +36,8 @@ public class PedidoDAO {
     public ArrayList<Pedido> listDetailPedido(int pedidoid ) {
         Cursor cursor = null;
         cursor = DataBaseSingleton.getInstance().rawQuery
-                ("SELECT p.pedidoId,p.productoId,c.nombre, c.descripcion  , p.pu,p.cantidad  FROM TB_Pedido  p join  TB_Producto c on c.productoId= p.productoId  Where p.pedidoId = 1"
-                        , null);
+                ("SELECT p.pedidoId,p.productoId,c.nombre, c.descripcion  , p.pu,p.cantidad  FROM TB_Pedido  p join  TB_Producto c on c.productoId= p.productoId  Where p.pedidoId = ?"
+                        , new String[]{String.valueOf(pedidoid)} );
         //SELECT p.pedidoId,p.productoId,c.nombre, c.descripcion  , p.pu,p.cantidad  FROM TB_Pedido  p join  TB_Producto c on c.productoId= p.productoId  Where p.pedidoId = 1
         ArrayList<Pedido> lstPedido = new ArrayList<>();
 
@@ -59,7 +59,7 @@ public class PedidoDAO {
         pedido.setIdCliente(cursor.getInt(cursor.getColumnIndex("clienteId")));
 
         pedido.setCantidadProductos(cursor.getInt(cursor.getColumnIndex("cantidadprod")));
-        pedido.setPrecio(cursor.getDouble(cursor.getColumnIndex("preciototal")));
+        pedido.setTotalPedido(cursor.getDouble(cursor.getColumnIndex("preciototal")));
        // pedido.setTotalPedido(cursor.getDouble(cursor.getColumnIndex("total")));
         //pedido.setNombreCliente(cursor.getString(cursor.getColumnIndex("nombre")));
         pedido.setEmpresa(cursor.getString(cursor.getColumnIndex("empresa")));

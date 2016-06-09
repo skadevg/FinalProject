@@ -45,8 +45,16 @@ public class RVAdapterListaPedido extends RecyclerView.Adapter<RVAdapterListaPed
     public void onBindViewHolder(RVAdapterListaPedidoViewHolder holder, int position) {
         Pedido pedido = mLstPedido.get(position);
         holder.tvPedidoListItemNombreCli.setText(pedido.getEmpresa());
-        holder.tvPedidoListItemCantProductos.setText(String.valueOf(pedido.getCantidadProductos()).concat(" productos"));
+        if (pedido.getCantidadProductos()>1)
+            holder.tvPedidoListItemCantProductos.setText(String.valueOf(pedido.getCantidadProductos()).concat(" productos"));
+        else
+            holder.tvPedidoListItemCantProductos.setText(String.valueOf(pedido.getCantidadProductos()).concat(" producto"));
+
         holder.tvPedidoListItemTotal.setText("S/ "+String.valueOf(pedido.getTotalPedido()));
+
+        //Listeners
+        holder.itemView.setOnClickListener(itemViewOnClickListener);
+        holder.itemView.setTag(position);
     }
 
     @Override
@@ -78,5 +86,11 @@ public class RVAdapterListaPedido extends RecyclerView.Adapter<RVAdapterListaPed
         notifyDataSetChanged();
     }
 
+    View.OnClickListener itemViewOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            mIRVAdapterListaPedidoListener.onItemClick(mLstPedido.get((Integer) v.getTag()));
+        }
+    };
 
 }

@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.project.cibertec.finalproject.R;
 import com.project.cibertec.finalproject.dao.PedidoDAO;
+import com.project.cibertec.finalproject.dao.ProductoDAO;
 import com.project.cibertec.finalproject.entities.Cliente;
 import com.project.cibertec.finalproject.entities.Pedido;
 import com.project.cibertec.finalproject.entities.Producto;
@@ -20,13 +21,14 @@ import com.project.cibertec.finalproject.pedido.adapter.recyclerview.RVAdapterLi
 import com.project.cibertec.finalproject.pedido.adapter.recyclerview.SPAdapter;
 import com.project.cibertec.finalproject.pedido.adapter.recyclerview.listeners.IRVAdapterListaPedidoListener;
 import com.project.cibertec.finalproject.producto.adapter.recyclerview.RVAdapterListaProducto;
+import com.project.cibertec.finalproject.producto.adapter.recyclerview.listeners.IRVAdapterListaProductoListener;
 
 import java.util.ArrayList;
 
 /**
  * Created by V825727 on 6/7/2016.
  */
-public class DetallePedidoActivity extends AppCompatActivity implements IRVAdapterListaPedidoListener {
+public class DetallePedidoActivity extends AppCompatActivity implements IRVAdapterListaProductoListener {
 
     private Spinner spClientes;
     private SPAdapter spFirstAdapter;
@@ -38,14 +40,14 @@ public class DetallePedidoActivity extends AppCompatActivity implements IRVAdapt
 
     private Pedido mPedido = null;
     private RVAdapterListaPedido mRVAdapterListaDetailPedido;
-
+    private RVAdapterListaProducto mRVAdapterListaDetailPedidoProducto;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pedidos_detalle_lista);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarNuevoPedidoList);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbardetallePedidos);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(R.string.tituloDetallePedido);
@@ -60,14 +62,14 @@ public class DetallePedidoActivity extends AppCompatActivity implements IRVAdapt
 
             mPedido = (Pedido) getIntent().getExtras().get("detallePedido");
 
-            mRVAdapterListaDetailPedido.clearAndAddAllDetail(new PedidoDAO().listDetailPedido(mPedido.getIdPedido()));
+            mRVAdapterListaDetailPedidoProducto.clearAndAddAll(new ProductoDAO().listProductoPedido(mPedido.getIdPedido()));
 
         }
 
-        mRVAdapterListaDetailPedido = new RVAdapterListaPedido(DetallePedidoActivity.this);
+        mRVAdapterListaDetailPedidoProducto = new RVAdapterListaProducto(DetallePedidoActivity.this);
 
-        mRVAdapterListaProducto.addAll(mListaProducto);
-        mRVProductosListado.setAdapter(mRVAdapterListaProducto);
+        mRVAdapterListaDetailPedidoProducto.addAll(mListaProducto);
+        mRVProductosListado.setAdapter(mRVAdapterListaDetailPedidoProducto);
 
     }
 
@@ -93,8 +95,7 @@ public class DetallePedidoActivity extends AppCompatActivity implements IRVAdapt
     }
 
     @Override
-    public void onItemClick(Pedido pedido) {
-
+    public void onItemClick(Producto producto) {
 
     }
 }

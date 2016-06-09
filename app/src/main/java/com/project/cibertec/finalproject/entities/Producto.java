@@ -9,6 +9,7 @@ public class Producto implements Parcelable {
     private String nombreProducto;
     private String descripcionProducto;
     private double precioProducto;
+    private int cantidadProducto;
 
     public Producto() {
     }
@@ -45,7 +46,13 @@ public class Producto implements Parcelable {
         this.precioProducto = precioProducto;
     }
 
+    public int getCantidadProducto() {
+        return cantidadProducto;
+    }
 
+    public void setCantidadProducto(int cantidadProducto) {
+        this.cantidadProducto = cantidadProducto;
+    }
     protected Producto(Parcel in) {
         idProducto = in.readInt();
         nombreProducto = in.readString();
