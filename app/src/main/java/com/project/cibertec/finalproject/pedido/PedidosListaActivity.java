@@ -52,11 +52,11 @@ public class PedidosListaActivity extends AppCompatActivity implements IRVAdapte
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(R.string.tituloPedidoLista);
 
+
         //Inflo el recycler y configuramos el Adapter
-        mRVPedidosListado = (RecyclerView) findViewById(R.id.rvPedidosDetalle);
+        mRVPedidosListado = (RecyclerView) findViewById(R.id.rvPedidosSeleccion);
         mRVPedidosListado.setLayoutManager(new LinearLayoutManager(PedidosListaActivity.this));
         mRVPedidosListado.setHasFixedSize(true);
-
         mRVAdapterListaPedido = new RVAdapterListaPedido(PedidosListaActivity.this);
         mRVPedidosListado.setAdapter(mRVAdapterListaPedido);
     }
