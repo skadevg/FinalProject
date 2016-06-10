@@ -121,7 +121,7 @@ public class ClientesMapActivity extends AppCompatActivity implements OnMapReady
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.mGoogleMap = googleMap;
-
+        mGoogleMap.getUiSettings().setZoomControlsEnabled(true);
         if(mCliente != null){
             LatLng latLng = new LatLng(Double.parseDouble(mCliente.getLatitud()),
                     Double.parseDouble(mCliente.getLongitud()));

@@ -35,7 +35,7 @@
                 card_view:contentPadding="20dp">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/titleContacto"
                     android:textSize="@dimen/size_title_contacto_nuevo_cliente"
@@ -97,37 +97,48 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
 
-                        <ImageView
-                            android:id="@+id/ivListCliItemLlamada"
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:layout_gravity="end"
-                            android:src="@drawable/ic_phone_black_24dp"
-                            android:contentDescription="@string/app_name" />
-
-                        <TextView
-                            android:id="@+id/tvClienteDetTelefono"
-                            android:layout_marginTop="15dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="15sp"/>
-
-                        <TextView
-                            android:text="@string/hintTelefono"
-                            android:textColor="#9e9e9e"
-                            android:layout_gravity="end"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="12sp" />
-
-                    </LinearLayout>
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="right">
+
+                    <android.support.design.widget.FloatingActionButton
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/fabItemCall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_local_phone_white_36dp"
+                        app:backgroundTint="@color/colorRed"
+                        app:elevation="6dp"
+                        app:pressedTranslationZ="12dp"
+                        app:rippleColor="@color/colorRedRiple" />
+
+
+                    <TextView
+                        android:id="@+id/tvClienteDetTelefono"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginRight="12dp"
+                        android:layout_gravity="right"/>
+
+                    <TextView
+                        android:text="@string/hintTelefono"
+                        android:textColor="#9e9e9e"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:layout_marginRight="12dp"
+                        android:layout_gravity="right"/>
+
+                </LinearLayout>
+
 
             </android.support.v7.widget.CardView>
 
@@ -195,19 +206,26 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
-                        <ImageView
-                            android:id="@+id/ivListCliItemPuntero"
-                            android:layout_width="32dp"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/ic_near_me_black_24dp"
-                            android:contentDescription="@string/app_name" />
+                        <android.support.design.widget.FloatingActionButton
+                            xmlns:android="http://schemas.android.com/apk/res/android"
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:id="@+id/fabItemMap"
+                            android:layout_centerInParent="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_near_me_white_36dp"
+                            app:backgroundTint="@color/colorRed"
+                            app:elevation="6dp"
+                            app:pressedTranslationZ="12dp"
+                            app:rippleColor="@color/colorRedRiple" />
 
-                    </LinearLayout>
+
+                    </RelativeLayout>
 
                 </LinearLayout>
 

@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,7 +16,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.project.cibertec.finalproject.R;
@@ -29,7 +29,6 @@ public class ClientesDetalleActivity extends AppCompatActivity {
             tvClienteDetDireccion, tvClienteDetDistrito, tvClienteDetReferencia;
     private Button btnCliDetNuevoPedido;
     private Cliente mCliente = null;
-    private ImageView ivListCliItemLlamada, ivListCliItemPuntero;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,10 +47,13 @@ public class ClientesDetalleActivity extends AppCompatActivity {
         tvClienteDetDistrito = (TextView) findViewById(R.id.tvClienteDetDistrito);
         tvClienteDetReferencia = (TextView) findViewById(R.id.tvClienteDetReferencia);
 
-        ivListCliItemLlamada = (ImageView) findViewById(R.id.ivListCliItemLlamada);
-        ivListCliItemLlamada.setOnClickListener(ivListCliItemLlamadaOnClickListener);
-        ivListCliItemPuntero = (ImageView) findViewById(R.id.ivListCliItemPuntero);
-        ivListCliItemPuntero.setOnClickListener(ivListCliItemPunteroOnClickListener);
+        // FLOATING BUTTON
+        FloatingActionButton fabItemMap = (FloatingActionButton) findViewById(R.id.fabItemMap);
+        fabItemMap.setOnClickListener(ivListCliItemPunteroOnClickListener);
+
+        FloatingActionButton fabItemCall = (FloatingActionButton) findViewById(R.id.fabItemCall);
+        fabItemCall.setOnClickListener(ivListCliItemLlamadaOnClickListener);
+        // FLOATING BUTTON
 
         btnCliDetNuevoPedido = (Button) findViewById(R.id.btnCliDetNuevoPedido);
         btnCliDetNuevoPedido.setOnClickListener(onClickListenerbtnCliDetNuevoPedido);

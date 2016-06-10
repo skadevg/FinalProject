@@ -202,6 +202,8 @@ public class ClientesNuevoActivity extends AppCompatActivity implements OnMapRea
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.mGoogleMap = googleMap;
+        mGoogleMap.getUiSettings().setZoomControlsEnabled(true);
+        mGoogleMap.getUiSettings().setMyLocationButtonEnabled(true);
         mGoogleMap.setOnMapClickListener(mGoogleMapOnMapClickListener);
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(-12.087, -77.049489), 17));
     }
