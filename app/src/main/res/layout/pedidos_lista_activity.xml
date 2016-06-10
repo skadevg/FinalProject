@@ -7,7 +7,7 @@
 
     <!-- Toolbar que va a reemplazar al actionbar -->
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbardetallePedidos"
+        android:id="@+id/toolbarPedidosList"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"

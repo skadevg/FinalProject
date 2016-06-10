@@ -45,7 +45,7 @@ public class DetallePedidoActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pedidos_detalle_activity);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarPedidosList);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbardetallePedidos);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(R.string.tituloDetallePedido);

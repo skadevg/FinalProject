@@ -9,7 +9,6 @@ public class Producto implements Parcelable {
     private String nombreProducto;
     private String descripcionProducto;
     private double precioProducto;
-    private int cantidadProducto;
 
     public Producto() {
     }
@@ -46,13 +45,7 @@ public class Producto implements Parcelable {
         this.precioProducto = precioProducto;
     }
 
-    public int getCantidadProducto() {
-        return cantidadProducto;
-    }
 
-    public void setCantidadProducto(int cantidadProducto) {
-        this.cantidadProducto = cantidadProducto;
-    }
     protected Producto(Parcel in) {
         idProducto = in.readInt();
         nombreProducto = in.readString();
@@ -86,37 +79,3 @@ public class Producto implements Parcelable {
         }
     };
 }
-
-
-
-//    public int getIdProducto() {
-//        return idProducto;
-//    }
-//
-//    public void setIdProducto(int idProducto) {
-//        this.idProducto = idProducto;
-//    }
-//
-//    public String getNombreProducto() {
-//        return nombreProducto;
-//    }
-//
-//    public void setNombreProducto(String nombreProducto) {
-//        this.nombreProducto = nombreProducto;
-//    }
-//
-//    public String getDescripcionProducto() {
-//        return descripcionProducto;
-//    }
-//
-//    public void setDescripcionProducto(String descripcionProducto) {
-//        this.descripcionProducto = descripcionProducto;
-//    }
-//
-//    public double getPrecioProducto() {
-//        return precioProducto;
-//    }
-//
-//    public void setPrecioProducto(double precioProducto) {
-//        this.precioProducto = precioProducto;
-//    }

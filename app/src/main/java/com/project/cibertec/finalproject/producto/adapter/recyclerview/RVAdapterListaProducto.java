@@ -50,8 +50,6 @@ public class RVAdapterListaProducto extends RecyclerView.Adapter<RVAdapterListaP
         holder.tvProductoListItemDesc.setText(producto.getDescripcionProducto());
         holder.tvProductoListItemPrecio.setText("S/ " + String.valueOf(producto.getPrecioProducto()));
 
-        holder.tvProductoListItemCantidad.setText(producto.getCantidadProducto());
-
         holder.itemView.setOnClickListener(itemViewOnClickListener);
         holder.itemView.setTag(position);
     }
@@ -65,19 +63,12 @@ public class RVAdapterListaProducto extends RecyclerView.Adapter<RVAdapterListaP
 
         private TextView tvProductoListItemNombre, tvProductoListItemDesc, tvProductoListItemPrecio;
 
-        private TextView tvProductoListItemCantidad, tvProductoListItemCantidadHint;
         public RVAdapterListaProductoViewHolder(View itemView) {
             super(itemView);
 
             tvProductoListItemNombre = (TextView) itemView.findViewById(R.id.tvProductoListItemNombre);
             tvProductoListItemDesc = (TextView) itemView.findViewById(R.id.tvProductoListItemDesc);
             tvProductoListItemPrecio = (TextView) itemView.findViewById(R.id.tvProductoListItemPrecio);
-            tvProductoListItemCantidad = (TextView) itemView.findViewById(R.id.tvProductoListItemCantidad);
-            tvProductoListItemCantidadHint = (TextView) itemView.findViewById(R.id.tvProductoListItemCantidadDes);
-            //tvProductoListItemCantidad.setVisibility(View.VISIBLE);
-            //tvProductoListItemCantidadHint.setVisibility(View.VISIBLE);
-
-
         }
     }
 

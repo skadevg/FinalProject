@@ -60,34 +60,4 @@ public class ProductoDAO {
         long inserto = DataBaseSingleton.getInstance().insert("TB_Producto", null, cv);
         return inserto != -1;
     }
-    public ArrayList<Producto> listProductoPedido(int pedidoId) {
-        Cursor cursor = null;
-        cursor = DataBaseSingleton.getInstance().rawQuery
-                ("SELECT p.pedidoId,p.productoId,c.nombre, c.descripcion  , p.pu,p.cantidad  FROM TB_Pedido  p join  TB_Producto c on c.productoId= p.productoId  Where p.pedidoId = ?"
-                        , new String[]{String.valueOf(pedidoId)} );
-
-        ArrayList<Producto> lstProducto = new ArrayList<>();
-
-        if (cursor.moveToFirst()) {
-            do {
-                lstProducto.add(transformCursorToPedidoProducto(cursor));
-            } while (cursor.moveToNext());
-        }
-
-        if (cursor != null && !cursor.isClosed())
-            cursor.close();
-
-        return lstProducto;
-    }
-
-    private Producto transformCursorToPedidoProducto(Cursor cursor) {
-        Producto producto = new Producto();
-        producto.setIdProducto(cursor.getInt(cursor.getColumnIndex("productoId")));
-        producto.setNombreProducto(cursor.getString(cursor.getColumnIndex("nombre")));
-        producto.setDescripcionProducto(cursor.getString(cursor.getColumnIndex("descripcion")));
-        producto.setPrecioProducto(Double.parseDouble(cursor.getString(cursor.getColumnIndex("pu"))));
-        producto.setCantidadProducto(cursor.getInt(cursor.getColumnIndex("cantidad")));
-        return producto;
-    }
-
 }
