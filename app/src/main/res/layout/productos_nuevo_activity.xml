@@ -1,71 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <!-- Toolbar que va a reemplazar al actionbar -->
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbarProdNuevo"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark"
-        android:elevation="@dimen/toolbarElevation"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp">
+        <!-- Toolbar que va a reemplazar al actionbar -->
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarProdNuevo"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="@dimen/toolbarElevation"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark" />
 
-        <EditText
-            android:id="@+id/edtProNuevoNombre"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hintNombre"
-            android:inputType="textCapWords"
-            android:maxLines="1"
-            android:maxLength="120"/>
-    </android.support.design.widget.TextInputLayout>
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp">
+            <EditText
+                android:id="@+id/edtProNuevoNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hintNombre"
+                android:inputType="textCapWords"
+                android:maxLength="120"
+                android:maxLines="1" />
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
-            android:id="@+id/edtProNuevoDescripcion"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hintDescripcion"
-            android:inputType="text"
-            android:maxLines="1"
-            android:maxLength="120"/>
-    </android.support.design.widget.TextInputLayout>
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="1dp">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="1dp">
+            <EditText
+                android:id="@+id/edtProNuevoDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hintDescripcion"
+                android:inputType="text"
+                android:maxLength="120"
+                android:maxLines="1" />
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
-            android:id="@+id/edtProNuevoPreUnitario"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hintPrecioUnitario"
-            android:inputType="number|numberDecimal"
-            android:maxLines="1"
-            android:maxLength="120"/>
-    </android.support.design.widget.TextInputLayout>
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="1dp">
 
-</LinearLayout>
+            <EditText
+                android:id="@+id/edtProNuevoPreUnitario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hintPrecioUnitario"
+                android:inputType="number|numberDecimal"
+                android:maxLength="120"
+                android:maxLines="1" />
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

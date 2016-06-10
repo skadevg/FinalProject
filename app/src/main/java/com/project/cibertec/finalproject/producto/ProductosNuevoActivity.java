@@ -3,9 +3,11 @@ package com.project.cibertec.finalproject.producto;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -79,11 +81,10 @@ public class ProductosNuevoActivity extends AppCompatActivity {
 
     private void save() {
 
-        boolean isOK = true;
+        boolean isOK = checkTexts();
 
         if (isOK) {
             if (mProducto == null)
-
                 mProducto = new Producto();
 
             mProducto.setNombreProducto(edtProNuevoNombre.getText().toString().trim());
@@ -107,10 +108,33 @@ public class ProductosNuevoActivity extends AppCompatActivity {
             }
         }
 
-        Intent intent = new Intent();
+    }
 
-        setResult(RESULT_OK, intent);
-        finish();
+
+    private boolean checkTexts() {
+
+        if (TextUtils.isEmpty(edtProNuevoNombre.getText().toString().trim())) {
+            edtProNuevoNombre.setError("Campo obligatorio");
+            Snackbar.make(getCurrentFocus(),"Ingrese el nombre del producto",Snackbar.LENGTH_SHORT).show();
+            return false;
+        }
+        if (TextUtils.isEmpty(edtProNuevoDescripcion.getText().toString().trim())) {
+            edtProNuevoDescripcion.setError("Campo obligatorio");
+            Snackbar.make(getCurrentFocus(),"Ingrese la descripción del producto",Snackbar.LENGTH_SHORT).show();
+            return false;
+        }
+        if (TextUtils.isEmpty(edtProNuevoPreUnitario.getText().toString().trim())) {
+            edtProNuevoPreUnitario.setError("Campo obligatorio");
+            Snackbar.make(getCurrentFocus(),"Ingrese el precio del producto",Snackbar.LENGTH_SHORT).show();
+            return false;
+        }
+        if (Double.parseDouble(edtProNuevoPreUnitario.getText().toString().trim()) <= 0) {
+            edtProNuevoPreUnitario.setError("Precio no válido");
+            Snackbar.make(getCurrentFocus(),"El precio debe ser mayor a cero.",Snackbar.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 
 

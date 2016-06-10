@@ -2,10 +2,12 @@ package com.project.cibertec.finalproject.cliente;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -28,6 +30,7 @@ public class ClientesNuevoActivity extends AppCompatActivity implements OnMapRea
     private GoogleMap mGoogleMap;
     private Cliente mCliente;
     private boolean isUpdate;
+    private LatLng mLatLng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,48 +99,10 @@ public class ClientesNuevoActivity extends AppCompatActivity implements OnMapRea
 
     private void save() {
 
-        boolean isOK = true;
-
-//        tilSecondNombre.setError(null);
-//        tilSecondApellido.setError(null);
-//        tilSecondEdad.setError(null);
-//        tilSecondDni.setError(null);
-//        tilSecondNombre.setErrorEnabled(false);
-//        tilSecondApellido.setErrorEnabled(false);
-//        tilSecondEdad.setErrorEnabled(false);
-//        tilSecondDni.setErrorEnabled(false);
-
-//        if (tilSecondNombre.getEditText().getText().toString().trim().isEmpty()) {
-//            tilSecondNombre.setError("Ingrese su nombre");
-//            tilSecondNombre.setErrorEnabled(true);
-//            isOK = false;
-//        }
-//
-//        if (tilSecondApellido.getEditText().getText().toString().trim().isEmpty()) {
-//            tilSecondApellido.setError("Ingrese su apellido");
-//            tilSecondApellido.setErrorEnabled(true);
-//            isOK = false;
-//        }
-//        if (tilSecondEdad.getEditText().getText().toString().trim().isEmpty()) {
-//            tilSecondEdad.setError("Ingrese su edad");
-//            tilSecondEdad.setErrorEnabled(true);
-//            isOK = false;
-//        }
-//        if (tilSecondDni.getEditText().getText().toString().trim().isEmpty()) {
-//            tilSecondDni.setError("Ingrese su DNI");
-//            tilSecondDni.setErrorEnabled(true);
-//            isOK = false;
-//        } else {
-//            if (tilSecondDni.getEditText().getText().toString().trim().length() < 8) {
-//                tilSecondDni.setError("El DNI es de 8 caracteres");
-//                tilSecondDni.setErrorEnabled(true);
-//                isOK = false;
-//            }
-//        }
+        boolean isOK = checkTexts();
 
         if (isOK) {
             if (mCliente == null)
-
                 mCliente = new Cliente();
 
             mCliente.setNombre(edtCliNuevoNombre.getText().toString().trim());
@@ -148,8 +113,8 @@ public class ClientesNuevoActivity extends AppCompatActivity implements OnMapRea
             mCliente.setDireccion(edtCliNuevoDireccion.getText().toString().trim());
             mCliente.setDistrito(edtCliNuevoDistrito.getText().toString().trim());
             mCliente.setReferencia(edtCliNuevoReferencia.getText().toString().trim());
-            mCliente.setLatitud("-12.112328");
-            mCliente.setLongitud("-76.978473");
+            mCliente.setLatitud(String.valueOf(mLatLng.latitude));
+            mCliente.setLongitud(String.valueOf(mLatLng.longitude));
             //
             if (isUpdate) {
                 boolean isUpdated = new ClienteDAO().updateCliente(mCliente);
@@ -168,44 +133,70 @@ public class ClientesNuevoActivity extends AppCompatActivity implements OnMapRea
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-   /*     if (tilSecondName.getEditText().getText().toString().trim().isEmpty())
-            showMessage("Ingrese su nombre");
-        else if (tilSecondLast.getEditText().getText().toString().trim().isEmpty())
-            showMessage("Ingrese su apellido");
-        else if (tilSecondDoc.getEditText().getText().toString().trim().isEmpty())
-            showMessage("Ingrese su documento");
-        else if (tilSecondDoc.getEditText().getText().toString().trim().length() < 8)
-            showMessage("Su documento debe ser de 8 dígitos");
-        else if (tilSecondAge.getEditText().getText().toString().trim().isEmpty())
-            showMessage("Ingrese su edad");
-        else {      */
-//            Person person = new Person();
-//            person.setName(tilSecondName.getEditText().getText().toString().trim());
-//            person.setLastName(tilSecondLast.getEditText().getText().toString().trim());
-//            person.setDoc(tilSecondDoc.getEditText().getText().toString().trim());
-//            person.setAge(Integer.parseInt(tilSecondAge.getEditText().getText().toString().trim()));
-//            person.setPhone(tilSecondPhone.getEditText().getText().toString().trim());
-        //            intent.putExtra("person", person);
-
-
-        Intent intent = new Intent();
-
-        setResult(RESULT_OK, intent);
-        finish();
     }
 
-    private void showMessage(String message) {
-        new AlertDialog.Builder(ClientesNuevoActivity.this).setTitle(R.string.app_name).setMessage(message).setPositiveButton("Aceptar", null).show();
+    private boolean checkTexts(){
+
+        if(TextUtils.isEmpty(edtCliNuevoNombre.getText().toString().trim())){
+            edtCliNuevoNombre.setError("Campo obligatorio");
+            Snackbar.make(getCurrentFocus(),"Ingrese el nombre del cliente",Snackbar.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(TextUtils.isEmpty(edtCliNuevoApellido.getText().toString().trim())){
+            edtCliNuevoApellido.setError("Campo obligatorio");
+            Snackbar.make(getCurrentFocus(),"Ingrese el apellido del cliente",Snackbar.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(TextUtils.isEmpty(edtCliNuevoTlf.getText().toString().trim())){
+            edtCliNuevoTlf.setError("Campo obligatorio");
+            Snackbar.make(getCurrentFocus(),"Ingrese el teléfono del cliente",Snackbar.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(edtCliNuevoTlf.getText().toString().trim().length() < 7){
+            edtCliNuevoTlf.setError("Teléfono inválido");
+            Snackbar.make(getCurrentFocus(),"El teléfono debe tener siete números como mínimo",Snackbar.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(TextUtils.isEmpty(edtCliNuevoCorreo.getText().toString().trim())){
+            edtCliNuevoCorreo.setError("Campo obligatorio");
+            Snackbar.make(getCurrentFocus(),"Ingrese el correo del cliente",Snackbar.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(TextUtils.isEmpty(edtCliNuevoEmpresa.getText().toString().trim())){
+            edtCliNuevoEmpresa.setError("Campo obligatorio");
+            Snackbar.make(getCurrentFocus(),"Ingrese el nombre de la empresa del cliente",Snackbar.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(TextUtils.isEmpty(edtCliNuevoDireccion.getText().toString().trim())){
+            edtCliNuevoDireccion.setError("Campo obligatorio");
+            Snackbar.make(getCurrentFocus(),"Ingrese la dirección de la empresa del cliente",Snackbar.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(TextUtils.isEmpty(edtCliNuevoDistrito.getText().toString().trim())){
+            edtCliNuevoDistrito.setError("Campo obligatorio");
+            Snackbar.make(getCurrentFocus(),"Ingrese el distrito de la empresa del cliente",Snackbar.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(TextUtils.isEmpty(edtCliNuevoReferencia.getText().toString().trim())){
+            edtCliNuevoReferencia.setError("Campo obligatorio");
+            Snackbar.make(getCurrentFocus(),"Ingrese la referencia de la empresa del cliente",Snackbar.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(mLatLng == null){
+            Snackbar.make(getCurrentFocus(),"Seleccione en el mapa la ubicación del cliente",Snackbar.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 
     @Override
@@ -219,7 +210,7 @@ public class ClientesNuevoActivity extends AppCompatActivity implements OnMapRea
     GoogleMap.OnMapClickListener mGoogleMapOnMapClickListener = new GoogleMap.OnMapClickListener() {
         @Override
         public void onMapClick(LatLng latLng) {
-
+            mLatLng = latLng;
             mGoogleMap.clear();
             mGoogleMap.addMarker(new MarkerOptions().position(latLng));
             mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
